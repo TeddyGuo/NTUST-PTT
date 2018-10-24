@@ -1,4 +1,0 @@
-# robots.txt to deny the robots access
-
-User-agent: *
-Disallow: /temp
