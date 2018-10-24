@@ -76,7 +76,7 @@ EOT;
 
             echo <<< EOT
             <h2>New Rule</h2>
-            <form method="post" action="add_rule.php" onSubmit="return InputCheck()">
+            <form method="post" action="add_rule.php" onSubmit="return inputCheck()">
                 <label for="username">Username: </label>
                 <select class="form-control" id="username" name="user_id">
                     $user_option
@@ -123,7 +123,70 @@ EOT;
                 $username = getUserName("user_id");
                 $registration_time = $row["registration_time"];
                 $permission = $row["permission"];
+                $i++;
+                $option = '';
+                for ($j = 1; $j < count($permission_text); $j++)
+                {
+                    if ($j == $permission)
+                        $option .= "<option value=$j selected='selected'>$permission_text[$j]</option>";
+                    else
+                        $option .= "<option value=$j>$permission_text[$j]</option>";
+                }
+
+                echo <<< EOT
+                <tr>
+                    <form method="post" action="change_permission.php">
+                        <input type="hidden" name="user_id" value=$user_id />
+                        <td>$user_id</td>
+                        <td>$username</td>
+                        <td>$registration_time</td>
+                        <td>
+                            <select class="form-control" id="permission_$i" name="permission" autoComplete="off" onChange="document.getElementById('submit_$i').disabled=false">
+                                $option
+                            <select>
+                        </td>
+                        <td><button class="btn" id="submit_$i" name="submit" disabled=true>Commit</button></td>
+                    </form>
+                </tr>
+EOT;
             }
+            echo("</table>");
         }
     }
 ?>
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>NTUST-ptt - user manage</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
+    <script src="/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header class="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="masthead-logo col-md-4">
+                    NTUST-ptt
+                </div>
+                <div class="masthead-nav col-md-8">
+                    <a href="/ptt/home.php">Home</a><!--Important to turn bbs folder to ptt-->
+                    <?php showUserManagement($_SESSION['default_permission']); ?>
+                    <a href="/user/user_info.php"><?php showUser(); ?></a>
+                    <a href="/logout.php">Log out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container markdown-body">
+        <?php showRules($_SESSION['default_permission']); ?>
+        <?php showRuleInput($_SESSION['default_permission']); ?>
+        <?php showUsers($_SESSION['default_permission']); ?>			
+        <footer class="footer">
+            We are the best!
+        </footer>
+    </div>
+</body>
+</html>
