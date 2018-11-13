@@ -159,8 +159,8 @@ EOT;
 <html lang="en-US">
 <head>
     <title>NTUST-ptt - user manage</title>
-    <link href="/css/style.css" rel="stylesheet" />
     <link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
+    <link href="/css/style.css" rel="stylesheet" />
     <script src="/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
