@@ -1,0 +1,15 @@
+body
+{
+    color: white;
+    background-color: black;
+}
+
+a:link
+{
+    color: white;
+}
+
+a:visited
+{
+    color: #18D45C;
+}
