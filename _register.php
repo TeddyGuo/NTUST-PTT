@@ -1,5 +1,5 @@
 <?php
-    include('util/constants.php');
+    include('util/constant.php');
     include('util/connect.php');
     
     if (!isset($_POST['submit']))
@@ -21,5 +21,5 @@
 <!DOCTYPE html>
 <script>
 	alert("Registered completed.");
-	window.location.href = "/index.html";
+	window.location.href = "./index.html";
 </script>
