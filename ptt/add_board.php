@@ -5,13 +5,13 @@
 
     if (!isset($_POST['submit']))
         exit('Illegal call to this page.');
-    if (!($_SESSION['default_permission'] >= ADMINISTRATOR))
+    if (!($_SESSION['default_permission'] >= MODERATOR))
         exit('Not enough permission.');
         
     $board_name = $_POST['board_name'];
     $board_name = addslashes($board_name);
     $query = "INSERT INTO board(board_name) VALUES ('$board_name')";
-    mysql_query($query) or die(mysql_error());
+    $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];
-    header("location:$last_page");
+    header("Location: $last_page");
 ?>

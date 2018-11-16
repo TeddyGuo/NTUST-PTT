@@ -8,8 +8,8 @@
     $username = addslashes($username);
     $password = MD5($_POST['password']);
     $query = "SELECT * FROM user WHERE (username = '$username' AND password = '$password')";
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result = mysql_fetch_array($result))
+    $result = $con->query($query) or die($query . '<br/>' . $con->error);
+    if ($result = $result->fetch_array(MYSQLI_BOTH))
     {
         session_start();
         $_SESSION = $result;

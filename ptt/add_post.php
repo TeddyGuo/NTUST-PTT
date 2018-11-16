@@ -8,6 +8,7 @@
         
     $board_id = $_POST['board_id'];
     $board_id = addslashes($board_id);
+    $board_id = substr($board_id, 0, -1);
     $user_id = $_SESSION['user_id'];
     $permission = getPermission($user_id, $board_id);
 
@@ -19,10 +20,12 @@
     $content = $_POST['content'];
     $content = addslashes($content);
     $now = date('Y-m-d H:i:s', time());
-    $query = "INSERT INTO post(user_id, board_id, post_name, create_time, content) ";
-    $query .= "VALUES ('$user_id', '$board_id', '$post_name', '$now', '$content')";
-    mysql_query($query) or die(mysql_error());
-    $result = mysql_query('SELECT last_insert_id()');
-    $post_id = mysql_fetch_array($result)['last_insert_id()'];
-    header("location:post.php?post_id=$post_id");
+    $query = "INSERT INTO post(user_id, board_id, post_name, create_time, last_update, content) ";
+    $query .= "VALUES ('$user_id', '$board_id', '$post_name', '$now', '$now', '$content')";
+
+    $con->query($query) or die($query . '<br/>' . $con->error);
+
+    $result = $con->query('SELECT last_insert_id()');
+    $post_id = $result->fetch_array(MYSQLI_BOTH)['last_insert_id()'];
+    header("Location: post.php?post_id=$post_id");
 ?>

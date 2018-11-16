@@ -8,12 +8,13 @@
 
     function showRules($permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
 
         if ($permission >= MODERATOR)
         {
             $query = "SELECT * FROM rule ORDER BY user_id, board_id";
-            $result = mysql_query($query) or die(mysql_error());
+            $result = $con->query($query) or die($query . '<br/>' . $con->error);
             echo <<< EOT
             <h1>Rule Manage</h1>
             <table>
@@ -26,7 +27,7 @@
                     <td></td>
                 </tr>
 EOT;
-            while ($row = mysql_fetch_array($result))
+            while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
                 $user_id = $row['user_id'];
                 $username = getUserName($user_id);
@@ -50,14 +51,16 @@ EOT;
 
     function showRuleInput($permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         if ($permission >= MODERATOR)
         {
             global $permission_option;
 
             $query = "SELECT * FROM user ORDER BY user_id";
-            $result = mysql_query($query) or die(mysql_error());
+            $result = $con->query($query) or die($query . '<br/>' . $con->error);
             $user_option = '';
-            while ($row = mysql_fetch_array($result))
+            while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
                 $user_id = $row['user_id'];
                 $username = getUserName($user_id);
@@ -65,9 +68,9 @@ EOT;
             }
 
             $query = "SELECT * FROM board ORDER BY board_id";
-            $result = mysql_query($query) or die(mysql_error());
+            $result = $con->query($query) or die($query . '<br/>' . $con->error);
             $board_option = '';
-            while ($row = mysql_fetch_array($result))
+            while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
@@ -97,6 +100,7 @@ EOT;
 
     function showUsers($permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
 
         if ($permission >= MODERATOR)
@@ -115,9 +119,9 @@ EOT;
             </table>
 EOT;
             $query = "SELECT * FROM user ORDER BY user_id";
-            $result = mysql_query($query) or die(mysql_error());
+            $result = $con->query($query) or die($query . '<br/>' . $con->error);
             $i = 0;
-            while ($row = mysql_fetch_array($result))
+            while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
                 $user_id = $row["user_id"];
                 $username = getUserName("user_id");

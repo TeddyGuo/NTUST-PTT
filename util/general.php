@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    /* test for this part*/
     if (!isset($_SESSION['user_id']))
     {
         exit("Illegal call to this page.");
@@ -9,20 +10,22 @@
     function showUser()
     {
         $username = $_SESSION['username'];
-        echo("Identity: ".$username);
+        echo("Identity: " . $username);
     }
-    function showUserManagement()
+    function showUserManagement($permission)
     {
         if ($permission >= MODERATOR)
         {
-            echo("<a href='user/manage.php'>User Management<a>");
+            echo("<a href='/user/manage.php'>User Management<a>");
         }
     }
     function getPermission($user_id, $board_id)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT permission FROM rule WHERE (user_id = '$user_id' AND board_id = '$board_id')";
-        $result = mysql_query($query) or die(mysql_error());
-        $permission = mysql_fetch_array($result)['permission'];
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        $permission = $result->fetch_array(MYSQLI_BOTH)['permission'];
         if (!$permission)
         {
             $permission = $_SESSION['default_permission'];
@@ -31,20 +34,26 @@
     }
     function getBoardId($post_id)
     {
-        $query = "SELECT permission FROM rule WHERE post_id = '$post_id'";
-        $result = mysql_query($query) or die(mysql_error());
-        return mysql_fetch_array($result)['board_id'];
+        global $con; // very important, it will cause a fatal error without this line.
+
+        $query = "SELECT board_id FROM post WHERE post_id = '$post_id'";
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        return $result->fetch_array(MYSQLI_BOTH)['board_id'];
     }
     function getBoardName($board_id)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT board_name FROM board WHERE board_id = '$board_id'";
-        $result = mysql_query($query) or die(mysql_error());
-        return mysql_fetch_array($result)['board_name'];
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        return $result->fetch_array(MYSQLI_BOTH)['board_name'];
     }
     function getUserName($user_id)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT username FROM user WHERE user_id = '$user_id'";
-        $result = mysql_query($query) or die(mysql_error());
-        return mysql_fetch_array($result)['username'];
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        return $result->fetch_array(MYSQLI_BOTH)['username'];
     }
 ?>

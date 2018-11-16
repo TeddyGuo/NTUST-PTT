@@ -6,8 +6,8 @@
     $reply_id = $_GET['reply_id'];
     $reply_id = addslashes($reply_id);
     $query = "SELECT * FROM post_reply WHERE reply_id = '$reply_id'";
-    $result = mysql_query($query) or die(mysql_error());
-    $result = mysql_fetch_array($result);
+    $result = $con->query($query) or die($query . '<br/>' . $con->error);
+    $result = $result->fetch_array(MYSQLI_BOTH);
     $post_id = $result['post_id'];
     $author_id = $result['user_id'];
     $user_id = $_SESSION['user_id'];
@@ -18,7 +18,7 @@
         exit('Not enough permission.');
         
     $query = "DELETE FROM post_reply WHERE reply_id = '$reply_id'";
-    mysql_query($query) or die(mysql_error());
+    $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];
     header("location:$last_page");
 ?>

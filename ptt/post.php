@@ -11,8 +11,9 @@
     $user_id = $_SESSION['user_id'];
 
     $query = "SELECT * FROM post WHERE post_id = '$post_id'";
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result = mysql_fetch_array($result))
+    $result = $con->query($query) or die($query . '<br/>' . $con->error);
+
+    if ($result = $result->fetch_array(MYSQLI_BOTH))
     {
         $board_id = $result['board_id'];
         $post_name = $result['post_name'];
@@ -25,7 +26,7 @@
 
     $permission = getPermission($user_id, $board_id);
 
-    function printReply($author_id, $create_time, $content, $user_id, $permission, $reply_id=0)
+    function printReply($author_id, $create_time, $content, $user_id, $permission, $reply_id = 0)
     {
         global $post_user_id;
         static $count = 0;
@@ -60,9 +61,11 @@ EOT;
 
     function showReply($post_id, $user_id, $permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT * FROM post_reply WHERE post_id = '$post_id' ORDER BY create_time";
-        $result = mysql_query($query) or die(mysql_error());
-        while ($row = mysql_fetch_array($result))
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
             echo("<h2></h2>\n");
             printReply($row['user_id'], $row['create_time'], $row['content'], $user_id, $permission, $row['reply_id']);

@@ -5,15 +5,16 @@
 
     if (!isset($_POST['submit']))
         exit('Illegal call to this page.');
+
     $user_id = $_SESSION['user_id'];
     $old_password = MD5($_POST['old_password']);
     $new_password = MD5($_POST['new_password']);
     $query = "SELECT * FROM user WHERE (user_id = '$user_id' AND password = '$old_password')";
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result = mysql_fetch_array($result))
+    $result = $con->query($query) or die($query . '<br/>' . $con->error);
+    if ($result = $result->fetch_array(MYSQLI_BOTH))
     {
         $query = "UPDATE user SET password = '$new_password' WHERE user_id = '$user_id'";
-        mysql_query($query) or die(mysql_error());
+        $con->query($query) or die($query . '<br/>' . $con->error);
         $_SESSION['password'] = $new_password;
         echo <<< EOT
         <script>

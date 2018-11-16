@@ -15,7 +15,7 @@
     
     $query = "INSERT INTO user(username, password, default_permission, registration_time) ";
     $query .= "VALUES('$username', '$password', '$permission', '$now')";
-    mysql_query($query) or die(mysql_error());
+    $con->query($query) or die($con->error);
 ?>
 
 <!DOCTYPE html>

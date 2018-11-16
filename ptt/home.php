@@ -5,16 +5,17 @@
 
     function showBoards($permission)
     {
-        $query = 'SELECT * FROM board ORDER BY board_id';
-        $result = mysql_query($query) or die(mysql_error());
-        $i = 0;
-        while ($row = mysql_fetch_array($result))
+	    global $con; // very important, it will cause a fatal error without this line.
+
+        $query = "SELECT * FROM board ORDER BY board_id";
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+
+        while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
-            $i++;
             $board_id = $row['board_id'];
             $board_name = $row['board_name'];
             $board_link = "<a href='board.php?board_id=$board_id'>$board_name</a>";
-            if ($permission >= ADMINISTRATOR)
+            if ($permission >= MODERATOR)
                 $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($board_id, '$board_name')\">Delete</button>";
             echo <<< EOT
             <p>
@@ -26,7 +27,7 @@
 EOT;
         }
         
-        if ($permission >= ADMINISTRATOR)
+        if ($permission >= MODERATOR)
             echo <<< EOT
             <h2>Create a new board</h2>
             <form method="post" action="add_board.php" onSubmit="return inputCheck()">
@@ -59,14 +60,17 @@ EOT;
     // Show Top 10
     function showTop($permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT post_id FROM top_cache ORDER BY reply_count DESC";
-        $result = mysql_query($query) or die(mysql_error());
-        while ($row = mysql_fetch_array($result))
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        
+        while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
             $post_id = $row['post_id'];
             $query = "SELECT * FROM post WHERE post_id = '$post_id'";
-            $result2 = mysql_query($query) or die(mysql_error());
-            $post_name = mysql_fetch_array($result2)['post_name'];
+            $result2 = $con->query($query) or die($query . '<br/>' . $con->error);
+            $post_name = $result2->fetch_array(MYSQLI_BOTH)['post_name'];
             $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
             echo <<< EOT
             <p><h5>
@@ -94,7 +98,7 @@ EOT;
 				</div>
 				<nav class="masthead-nav">
 					<a href="/ptt/home.php">Home</a>
-					<?php showUserManangement($_SESSION['default_permission']); ?>
+					<?php showUserManagement($_SESSION['default_permission']); ?>
 					<a href="../user/user_info.php"><?php showUser(); ?></a>
 					<a href="../logout.php">Log out</a>
 				</nav>

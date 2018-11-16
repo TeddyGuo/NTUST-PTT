@@ -19,8 +19,8 @@
     $now = date('Y-m-d H:i:s', time());
     $query = "INSERT INTO post_reply(user_id, post_id, create_time, content) ";
     $query .= "VALUES ('$user_id', '$post_id', '$now', '$content')";
-    mysql_query($query) or die(mysql_error());
+    $con->query($query) or die($query . '<br/>' . $con->error);
     $query = "UPDATE post SET last_update = '$now' WHERE post_id = '$post_id'";
-    mysql_query($query) or die(mysql_error());
-    header("location:post.php?post_id=$post_id");
+    $con->query($query) or die($query . '<br/>' . $con->error);
+    header("Location: post.php?post_id=$post_id");
 ?>

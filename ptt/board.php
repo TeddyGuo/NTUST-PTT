@@ -12,17 +12,20 @@
     $permission = getPermission($user_id, $board_id);
 
     $query = "SELECT board_name FROM board WHERE board_id = $board_id";
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result = mysql_fetch_array($result))
+    $result = $con->query($query) or die($query . '<br/>' . $con->error);
+    if ($result = $result->fetch_array(MYSQLI_BOTH))
         $board_name = $result['board_name'];
     else
         exit("No board found for BID=$board_id.");
     
     function showPosts($board_id, $user_id, $permission)
     {
+        global $con; // very important, it will cause a fatal error without this line.
+
         $query = "SELECT * FROM post WHERE board_id = '$board_id' ORDER BY last_update DESC";
-        $result = mysql_query($query) or die(mysql_error());
-        while ($row = mysql_fetch_array($result))
+        $result = $con->query($query) or die($query . '<br/>' . $con->error);
+        
+        while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
             $post_id = $row['post_id'];
             $post_name = $row['post_name'];
