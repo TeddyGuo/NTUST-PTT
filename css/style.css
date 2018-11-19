@@ -13,3 +13,9 @@ a:visited
 {
     color: #18D45C;
 }
+
+table
+{
+    display: flex;
+    width: 100%;
+}

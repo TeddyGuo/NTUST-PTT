@@ -11,8 +11,8 @@
     $board_id = $_GET['board_id'];
     $board_id = addslashes($board_id);
         
-    $query = "DELETE FROM rule WHERE (user_id = '$user_id' and board_id = '$board_id')";
+    $query = "DELETE FROM rule WHERE (user_id = '$user_id' AND board_id = '$board_id')";
     $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];
-    header("location:$last_page");
+    header("Location: $last_page");
 ?>

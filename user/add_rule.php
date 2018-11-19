@@ -17,5 +17,5 @@
     $query = "INSERT INTO rule VALUES('$user_id', '$board_id', '$permission') ";
     $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];
-    header("location:$last_page");
+    header("Location: $last_page");
 ?>

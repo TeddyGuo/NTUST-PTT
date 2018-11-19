@@ -41,7 +41,7 @@ EOT;
                     <td>$board_id</td>
                     <td>$board_name</td>
                     <td>$permission</td>
-                    <td><button class="btn" onClick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id'">Delete</button></td>
+                    <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id'">Delete</button></td>
                 </tr>
 EOT;
             }
@@ -116,7 +116,6 @@ EOT;
 
                     <td><button class="btn" onClick="window.location.href=window.location.href">Restore</button></td>
                 </tr>
-            </table>
 EOT;
             $query = "SELECT * FROM user ORDER BY user_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
@@ -124,9 +123,10 @@ EOT;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
                 $user_id = $row["user_id"];
-                $username = getUserName("user_id");
+                $username = getUserName($user_id);
                 $registration_time = $row["registration_time"];
                 $permission = $row["permission"];
+
                 $i++;
                 $option = '';
                 for ($j = 1; $j < count($permission_text); $j++)
@@ -139,7 +139,7 @@ EOT;
 
                 echo <<< EOT
                 <tr>
-                    <form method="post" action="change_permission.php">
+                    <form method="post" action="./change_permission.php">
                         <input type="hidden" name="user_id" value=$user_id />
                         <td>$user_id</td>
                         <td>$username</td>
@@ -171,13 +171,14 @@ EOT;
     <header class="masthead">
         <div class="container">
             <div class="row">
-                <div class="masthead-logo col-md-4">
+                <div class="masthead-logo col-4">
                     NTUST-ptt
                 </div>
-                <div class="masthead-nav col-md-8">
-                    <a href="/ptt/home.php">Home</a><!--Important to turn bbs folder to ptt-->
+                <div class="masthead-nav col-8">
+                    <a href="/ptt/home.php">Home</a><!--WTF this part-->
                     <?php showUserManagement($_SESSION['default_permission']); ?>
                     <a href="/user/user_info.php"><?php showUser(); ?></a>
+                    <?php showDefaultPermission();?>
                     <a href="/logout.php">Log out</a>
                 </div>
             </div>

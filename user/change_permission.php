@@ -19,5 +19,5 @@
     $query = "UPDATE user SET default_permission = '$permission' WHERE user_id = '$user_id'";
     $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];
-    header("location:$last_page");
+    header("Location: $last_page");
 ?>

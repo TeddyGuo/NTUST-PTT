@@ -7,6 +7,17 @@
         exit("Illegal call to this page.");
     }
 
+    function showDefaultPermission()
+    {
+        $permission = $_SESSION['default_permission'];
+        echo("Authority: ");
+        if ($permission == 3) 
+            echo("Admin");
+        else if ($permission == 2)
+            echo("MODERATOR");
+        else
+            echo("USER");
+    }
     function showUser()
     {
         $username = $_SESSION['username'];

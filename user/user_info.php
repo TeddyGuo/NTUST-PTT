@@ -40,7 +40,7 @@
 				Registration time : <?php echo($registration_time); ?>
 			</p>
 			<p>
-				Default permission : <?php echo($perm_text[$permission]); ?>
+				Default permission : <?php echo($permission_text[$permission]); ?>
 			</p>
 			<h2>Change password</h2>
 			<form method="post" action="change_password.php" onSubmit="return inputCheck()">
