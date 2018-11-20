@@ -117,7 +117,8 @@ EOT;
 			<?php showReply($post_id, $user_id, $permission); ?>
 			<?php showReplyInput($post_id, $permission); ?>
 			<footer class="footer">
-				We are family!
+                <!--Go back to last page-->
+                <?php goBack(); ?>
 			</footer>
 		</div>
 	</body>

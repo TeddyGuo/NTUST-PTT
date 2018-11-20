@@ -85,9 +85,9 @@ EOT;
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>NTUST-ptt - home</title>
-		<link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
-		<link href="/css/style.css" rel="stylesheet" />
+        <title>NTUST-ptt - home</title>
+        <link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
         <script src="/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 	</head>
 	<body>
@@ -111,8 +111,8 @@ EOT;
 			<h2>Top 10 Posts</h2>
 			<?php showTop($_SESSION['default_permission']); ?>
 			<footer class="footer">
-				We are family!
-			</footer>
+			    <img src="/images/Home.jpeg" alt="Home" />
+            </footer>
 		</div>
 	</body>
 </html>

@@ -6,7 +6,7 @@
     if (!isset($_POST['submit']))
         exit('Illegal call to this page.');
     
-    if ($_SESSION['default_permission'] < ADMINISTRATOR)
+    if ($_SESSION['default_permission'] < ADMIN)
         exit('Not enough permission.');
     
     $user_id = $_POST['user_ID'];

@@ -94,10 +94,10 @@
     function permissionText(select)
     {
         permissionToText = new Array();
-        permissionToText[0] = "A tourist can only read posts.";
-        permissionToText[1] = "A user can read, create posts, but cannot delete posts of others.";
-        permissionToText[2] = "A moderator can read, create and delete posts.";
-        permissionToText[3] = "An administrator can read, create and delete posts. \
+        // permissionToText[0] = "A tourist can only read posts.";
+        permissionToText[0] = "A user can read, create posts, but cannot delete posts of others.";
+        permissionToText[1] = "A moderator can read, create and delete posts.";
+        permissionToText[2] = "An administrator can read, create and delete posts. \
                         An administrator can also manage the status of others.";
         document.getElementById("describe").innerHTML = permissionToText[select.selectedIndex];
     }

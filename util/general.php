@@ -67,4 +67,11 @@
         $result = $con->query($query) or die($query . '<br/>' . $con->error);
         return $result->fetch_array(MYSQLI_BOTH)['username'];
     }
+    // go back to last page
+    function goBack()
+    {
+        echo <<< EOT
+        <button onclick="history.back();">Back</button>
+EOT;
+    }
 ?>

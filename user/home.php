@@ -17,7 +17,7 @@
             $board_name = $row['board_name'];
             $board_link = "<a href='board.php?board_id=$board_id'>$board_name</a>";
             
-            if (!($permission < ADMINISTRATOR))
+            if (!($permission < ADMIN))
                 $control = "<button style='float:right' class='btn btn-sm btn-danger' onClick='confirmDelete($board_id, \"$board_name\")'>Delete</button>";
             
             $i++;
@@ -31,7 +31,7 @@
 EOT;
         }
         
-        if (!($permission < ADMINISTRATOR))
+        if (!($permission < ADMIN))
             echo <<< EOT
             <h2>Create a new board</h2>
             <form method="post" action="add_board.php" onSubmit="return inputCheck()">
