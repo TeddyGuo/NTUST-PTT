@@ -25,7 +25,7 @@
 					NTUST-ptt
 				</div>
 				<nav class="masthead-nav">
-					<a href="/index.html">Back</a>
+					<a href="/index.php">Back</a>
 				</nav>
 			</div>
 		</header>
