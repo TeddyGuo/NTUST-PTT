@@ -9,7 +9,7 @@
     }
 
     $board_id = $_GET['board_id'];
-    $board_id = addcslashes($board_id);
+    $board_id = addslashes($board_id);
 
     $query = "SELECT post_id FROM post WHERE board_id = '$board_id'";
     $result = $con->query($query) or die($query . '<br/>' . $con->error);
