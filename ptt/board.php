@@ -61,7 +61,7 @@ EOT;
                 </p>
                 <p>
                     <label for="image">Image :</label>
-                    <input class="form-control input-block" type="text" id="image" name="image" />
+                    <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
                 </p>
                 <input class="btn btn-primary" type="submit" name="submit" value="Post!">
             </form>
