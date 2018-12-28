@@ -16,9 +16,11 @@
         
     $content = $_POST['content'];
     $content = addslashes($content);
+    $img = $_POST['img'];
+    $img = addslashes($img);
     $now = date('Y-m-d H:i:s', time());
-    $query = "INSERT INTO post_reply(user_id, post_id, create_time, content) ";
-    $query .= "VALUES ('$user_id', '$post_id', '$now', '$content')";
+    $query = "INSERT INTO post_reply(user_id, post_id, create_time, content, img) ";
+    $query .= "VALUES ('$user_id', '$post_id', '$now', '$content', '$img')";
     $con->query($query) or die($query . '<br/>' . $con->error);
     $query = "UPDATE post SET last_update = '$now' WHERE post_id = '$post_id'";
     $con->query($query) or die($query . '<br/>' . $con->error);

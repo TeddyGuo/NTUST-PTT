@@ -18,6 +18,7 @@
         $board_id = $result['board_id'];
         $post_name = $result['post_name'];
         $content = $result['content'];
+        $img = $result['img'];
         $create_time = $result['create_time'];
         $post_user_id = $result['user_id'];
     }
@@ -26,7 +27,7 @@
 
     $permission = getPermission($user_id, $board_id);
 
-    function printReply($author_id, $create_time, $content, $user_id, $permission, $reply_id = 0)
+    function printReply($author_id, $create_time, $content, $img, $user_id, $permission, $reply_id = 0)
     {
         global $post_user_id;
         static $count = 0;
@@ -55,6 +56,9 @@
         <p>
             $content
         </p>
+        <p>
+            <img src ="<?php echo $img; ?>" />
+        </p>
 EOT;
         $count++;
     }
@@ -68,7 +72,7 @@ EOT;
         while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
             echo("<h2></h2>\n");
-            printReply($row['user_id'], $row['create_time'], $row['content'], $user_id, $permission, $row['reply_id']);
+            printReply($row['user_id'], $row['create_time'], $row['content'], $row['img'], $user_id, $permission, $row['reply_id']);
         }
     }
 
@@ -81,6 +85,9 @@ EOT;
                 <input type="hidden" name="post_id" value=$post_id />
                 <p>
                     <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
+                </p>
+                <p>
+                    <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
                 </p>
                 <input class="btn btn-primary" type="submit" name="submit" value="Post!">
             </form>
@@ -113,6 +120,7 @@ EOT;
 		
 		<div class="container markdown-body">
 			<h1 class="page-title"><?php echo($post_name); ?></h1>
+            <img src ="<?php echo $img; ?>" />
 			<?php printReply($post_user_id, $create_time, $content, $user_id, $permission); ?>
 			<?php showReply($post_id, $user_id, $permission); ?>
 			<?php showReplyInput($post_id, $permission); ?>

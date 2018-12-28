@@ -59,6 +59,10 @@ EOT;
                     <label for="content">Content :</label>
                     <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
                 </p>
+                <p>
+                    <label for="image">Image :</label>
+                    <input class="form-control input-block" type="text" id="image" name="image" />
+                </p>
                 <input class="btn btn-primary" type="submit" name="submit" value="Post!">
             </form>
 EOT;

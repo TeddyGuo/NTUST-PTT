@@ -49,6 +49,7 @@
         create_time DATETIME NOT NULL,
         last_update DATETIME NOT NULL,
         content TEXT NOT NULL,
+        img TEXT NULL,
 
         PRIMARY KEY (post_id),
         FOREIGN KEY (user_id) REFERENCES user(user_id),
@@ -61,6 +62,7 @@
         post_id INT NOT NULL,
         create_time DATETIME NOT NULL,
         content TEXT NOT NULL,
+        img TEXT NULL,
 
         PRIMARY KEY (reply_id),
         FOREIGN KEY (post_id) REFERENCES post(post_id)
