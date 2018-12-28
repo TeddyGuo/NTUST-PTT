@@ -57,7 +57,7 @@
             $content
         </p>
         <p>
-            <img src=<?php echo($img); ?> alt=<?php echo($img); ?> />
+            <?php showImg($img); ?>
         </p>
 EOT;
         $count++;
@@ -120,7 +120,7 @@ EOT;
 		
 		<div class="container markdown-body">
 			<h1 class="page-title"><?php echo($post_name); ?></h1>
-            <img src=<?php echo($img); ?> alt=<?php echo($img); ?> />
+            <?php showImg($img); ?>
 			<?php printReply($post_user_id, $create_time, $content, $img, $user_id, $permission); ?>
 			<?php showReply($post_id, $user_id, $permission); ?>
 			<?php showReplyInput($post_id, $permission); ?>
