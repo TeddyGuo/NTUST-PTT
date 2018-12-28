@@ -15,3 +15,9 @@ Now, you can see my homework on the address
 https://ntust-ptt.herokuapp.com
 
 I deployed my homework on heroku
+
+If you would like to deploy on the local machine
+
+You need to change settings in the util/connect.php
+
+Since it is designed by DAO pattern
