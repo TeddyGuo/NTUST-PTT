@@ -76,6 +76,6 @@ EOT;
     }
     function showImg($img)
     {
-        echo "<img src="$img" alt="$img" />";
+        echo "<img src='$img' alt='$img' />";
     }
 ?>
