@@ -74,10 +74,4 @@
         <button onclick="history.back();">Back</button>
 EOT;
     }
-    function showImg($img)
-    {
-        echo <<< EOT
-        <img src="$img" alt="$img" />
-EOT;
-    }
 ?>
