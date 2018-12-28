@@ -97,7 +97,7 @@ EOT;
 			<?php showPosts($board_id, $user_id, $permission); ?>
 			<?php showPostInput($board_id, $permission); ?>
 			<footer class="footer">
-			    <? goBack();?>
+			    <?php goBack();?>
 			</footer>
 		</div>
 	</body>
