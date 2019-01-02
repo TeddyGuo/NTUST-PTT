@@ -24,11 +24,13 @@
     )") or die($query . '<br/>' . $con->error);
 
     $con->query("CREATE TABLE board (
+        user_id INT NOT NULL,
         board_id INT NOT NULL AUTO_INCREMENT,
         board_name VARCHAR(50) NOT NULL,
 
         UNIQUE(board_name),
         PRIMARY KEY (board_id)
+        FOREIGN KEY (user_id) REFERENCES user(user_id)
     )") or die($query . '<br/>' . $con->error);
 
     $con->query("CREATE TABLE rule (
