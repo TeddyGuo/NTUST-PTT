@@ -15,7 +15,7 @@
     $user_id = $_GET['user_id'];
     $user_id = addslashes($user_id);
 
-    if ($user_id == 0 || $cur_user_id != $user_id)
+    if ($user_id == 0 || $cur_user_id != $user_id || $_SESSION['default_permission'] != ADMIN)
     {
         echo <<< EOT
         <script>
@@ -41,7 +41,7 @@ EOT;
         $query = "DELETE FROM board WHERE board_id = '$board_id'";
         $con->query($query) or die($query . '<br/>' . $con->error);
     }
-    
+
     $last_page = $_SERVER["HTTP_REFERER"];
     header("Location: $last_page");
 ?>
