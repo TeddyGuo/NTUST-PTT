@@ -7,6 +7,15 @@
     {
         exit("Not enough permission.");
     }
+    else if ($_SESSION['user_id'] != $_GET['board_id'])
+    {
+        echo <<< EOT
+        <script language="javascript">
+            alert("message successfully sent");
+        </script>
+EOT;
+        header("Location: $last_page");
+    }
 
     $board_id = $_GET['board_id'];
     $board_id = addslashes($board_id);
