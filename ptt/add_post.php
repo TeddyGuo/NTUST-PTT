@@ -17,8 +17,10 @@
 
     $post_name = $_POST['title'];
     $post_name = addslashes($post_name);
+    $post_name = $con->real_escape_string($post_name);
     $content = $_POST['content'];
     $content = addslashes($content);
+    $content = $con->real_escape_string($content);
     $img = $_POST['img'];
     $img = addslashes($img);
     $now = date('Y-m-d H:i:s', time());
