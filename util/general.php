@@ -14,9 +14,9 @@
         if ($permission == 3) 
             echo("Admin");
         else if ($permission == 2)
-            echo("MODERATOR");
+            echo("Moderator");
         else
-            echo("USER");
+            echo("User");
     }
     function showUser()
     {
