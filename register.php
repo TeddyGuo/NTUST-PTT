@@ -2,9 +2,9 @@
     include("util/constant.php");
 
     $option = '';
-    for ($i = 1; $i < count($permission_text); $i++)
+    for ($i = 1; $i < count($permission_text) - 1; $i++)
     {
-        if ($i == 2) $option .= "<option value=$i selected='selected'>$permission_text[$i]</option>";
+        if ($i == 1) $option .= "<option value=$i selected='selected'>$permission_text[$i]</option>";
         else $option .= "<option value=$i>$permission_text[$i]</option>";
     }
 ?>
