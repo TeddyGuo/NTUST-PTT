@@ -1,3 +1,4 @@
+<!--WTF-->
 <?php
     include("../util/constant.php");
     include("../util/connect.php");
