@@ -14,6 +14,7 @@
         {
             $board_id = $row['board_id'];
             $board_name = $row['board_name'];
+            $board_name = $con->real_escape_string($board_name);
             $board_link = "<a href='board.php?board_id=$board_id'>$board_name</a>";
             if ($permission >= MODERATOR)
                 $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($board_id, '$board_name')\">Delete</button>";
