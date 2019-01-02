@@ -15,7 +15,7 @@
     $user_id = $_GET['user_id'];
     $user_id = addslashes($user_id);
 
-    if ($user_id == 0 || $cur_user_id != $user_id || $_SESSION['default_permission'] != ADMIN)
+    if ($_SESSION['default_permission'] != ADMIN && ($user_id == 0 || $cur_user_id != $user_id))
     {
         echo <<< EOT
         <script>
