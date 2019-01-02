@@ -9,7 +9,7 @@
     if ($_SESSION['default_permission'] < ADMIN)
         exit('Not enough permission.');
     
-    $user_id = $_POST['user_ID'];
+    $user_id = $_POST['user_id'];
     $user_id = addslashes($user_id);
     $permission = $_POST['permission'];
     $permission = intval($permission);
