@@ -10,6 +10,8 @@
     {
         global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
+        // plus admin
+        array_push($permission_text, "Admin");
 
         if ($permission >= MODERATOR)
         {
