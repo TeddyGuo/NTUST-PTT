@@ -58,6 +58,7 @@ EOT;
         if ($permission >= MODERATOR)
         {
             global $permission_option;
+            $permission_option .= "<option value=3>Admin</option>\n";
 
             $query = "SELECT * FROM user ORDER BY user_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
@@ -104,6 +105,7 @@ EOT;
     {
         global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
+        array_push($permission_text, "Admin");
 
         if ($permission >= MODERATOR)
         {
