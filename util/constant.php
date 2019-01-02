@@ -3,7 +3,7 @@
     define("MODERATOR", 2);
     define("ADMIN", 3);
 
-    $permission_text = array('null', 'User', 'Moderator', 'Admin');
+    $permission_text = array('null', 'User', 'Moderator');
 
     $permission_option = '';
     for ($i = 1; $i < count($permission_text); $i++)

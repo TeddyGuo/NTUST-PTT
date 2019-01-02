@@ -15,7 +15,11 @@
     $user_id = $_GET['user_id'];
     $user_id = addslashes($user_id);
 
-    if ($_SESSION['default_permission'] != ADMIN && ($user_id == 0 || $cur_user_id != $user_id))
+    // check rule part
+    $query = "SELECT user_id FROM rule WHERE board_id = '$board_id' AND permission >= 2";
+    $result1 = $con->query($query); // return True or False
+
+    if ($_SESSION['default_permission'] != ADMIN && ($user_id == 0 || ($cur_user_id != $user_id && $result == False) ) )
     {
         echo <<< EOT
         <script>
