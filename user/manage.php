@@ -11,7 +11,8 @@
         global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
         // plus admin
-        array_push($permission_text, "Admin");
+        $strong_permission_text = $permission_text;
+        array_push($strong_permission_text, "Admin");
 
         if ($permission >= MODERATOR)
         {
@@ -35,7 +36,7 @@ EOT;
                 $username = getUserName($user_id);
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
-                $permission = $permission_text[$row['permission']];
+                $permission = $strong_permission_text[$row['permission']];
                 echo <<< EOT
                 <tr>
                     <td>$user_id</td>
@@ -58,7 +59,8 @@ EOT;
         if ($permission >= MODERATOR)
         {
             global $permission_option;
-            $permission_option .= "<option value=3>Admin</option>\n";
+            $strong_permission_option = $permission_option;
+            $strong_permission_option .= "<option value=3>Admin</option>\n";
 
             $query = "SELECT * FROM user ORDER BY user_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
@@ -93,7 +95,7 @@ EOT;
                 </select>&nbsp; &nbsp;
                 <label for="permission">Permission: </label>
                 <select class="form-control" id="permission" name="permission">
-                    $permission_option
+                    $strong_permission_option
                 </select>&nbsp; &nbsp;
                 <input class="btn" type="submit" name="submit" value="Add" />
             </form>
@@ -105,7 +107,8 @@ EOT;
     {
         global $con; // very important, it will cause a fatal error without this line.
         global $permission_text;
-        array_push($permission_text, "Admin");
+        $strong_permission_text = $permission_text;
+        array_push($strong_permission_text, "Admin");
 
         if ($permission >= MODERATOR)
         {
@@ -133,12 +136,12 @@ EOT;
 
                 $i++;
                 $option = '';
-                for ($j = 1; $j < count($permission_text); $j++)
+                for ($j = 1; $j < count($strong_permission_text); $j++)
                 {
                     if ($j == $permission)
-                        $option .= "<option value=$j selected='selected'>$permission_text[$j]</option>";
+                        $option .= "<option value=$j selected='selected'>$strong_permission_text[$j]</option>";
                     else
-                        $option .= "<option value=$j>$permission_text[$j]</option>";
+                        $option .= "<option value=$j>$strong_permission_text[$j]</option>";
                 }
 
                 echo <<< EOT
