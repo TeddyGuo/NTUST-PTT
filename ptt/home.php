@@ -124,7 +124,7 @@ EOT;
 			<?php showTop($_SESSION['default_permission']); ?>
 		</div>
         <footer class="footer">
-			<a href="www.pornhub.com" target="_blank"><img src="/images/Home.jpeg" alt="Home" /></a>
+			<a href="https://www.pornhub.com" target="_blank"><img src="/images/Home.jpeg" alt="Home" /></a>
         </footer>
 	</body>
 </html>
