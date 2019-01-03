@@ -77,7 +77,7 @@ EOT;
     function checkhtml($html) {
         //if(!checkperm('allowhtml')) {
      
-            preg_match_all("/\<([^\<]+)\>/is", $html, $ms);
+            preg_match_all('"/\<([^\<]+)\>/is"', $html, $ms);
      
             $searchs[] = '<';
             $replaces[] = '&lt;';
@@ -105,8 +105,9 @@ EOT;
                             'onrowenter','onrowexit','onrowsdelete','onrowsinserted','onscroll','onselect','onselectionchange','onselectstart','onstart','onstop',
                             'onsubmit','onunload','javascript','script','eval','behaviour','expression','style','class');
                     $skipstr = implode('|', $skipkeys);
-                    $value = preg_replace(array("/($skipstr)/i"), '.', $value);
-                    if(!preg_match("/^[\/|\s]?($allowtags)(\s+|$)/is", $value)) {
+                    $pattern = '\"($skipstr)/i")';
+                    $value = preg_replace(array($pattern, '.', $value));
+                    if(!preg_match('"/^[\/|\s]?($allowtags)(\s+|$)/is"', $value)) {
                         $value = '';
                     }
                     $replaces[] = empty($value)?'':"<".str_replace('&quot;', '"', $value).">";
