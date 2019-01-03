@@ -35,9 +35,10 @@ EOT;
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
                 $board_name = htmlspecialchars($board_name);
-                $permission_string = $permission_text[$row['default_permission']];
+                $permission_string = $permission_text[$row['permission']];
+                $permission_num = $row['permission'];
 
-                if ($row['default_permission'] )
+                if ($row['permission'] )
                     echo <<< EOT
                     <tr>
                         <td>$user_id</td>
@@ -45,7 +46,7 @@ EOT;
                         <td>$board_id</td>
                         <td>$board_name</td>
                         <td>$permission_string</td>
-                        <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission'">Delete</button></td>
+                        <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission_num'">Delete</button></td>
                     </tr>
 EOT;
             }
