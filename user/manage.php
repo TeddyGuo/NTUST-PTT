@@ -130,13 +130,13 @@ EOT;
             $i = 0;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
-                if ($row['permission'] != ADMIN)
+                if ($row['default_permission'] != ADMIN)
                 {
                     $user_id = $row["user_id"];
                     $username = getUserName($user_id);
                     $username = htmlspecialchars($username);
                     $registration_time = $row["registration_time"];
-                    $permission = $row["permission"];
+                    $permission = $row["default_permission"];
 
                     $i++;
                     $option = '';
@@ -165,8 +165,6 @@ EOT;
                     </tr>
 EOT;
                 }
-                else
-                    echo "<tr>Hidden Info</tr>";
             }
             echo("</table>");
         }
