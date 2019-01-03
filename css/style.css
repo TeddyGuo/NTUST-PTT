@@ -32,7 +32,7 @@ hr
 .imgbox {
     margin: 0;
     padding: 0;
-    display: grid;
+    display: block;
 }
 .center-fit {
     max-width: 100%;
