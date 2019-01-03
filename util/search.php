@@ -11,39 +11,40 @@
             header("Location: " . $last_page);
         }
     } 
-    //base url
-    $base = '../ptt/home.php';
+    $url = "../ptt/home.php";
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $html = curl_exec($ch);
+    curl_close($ch);
 
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($curl, CURLOPT_HEADER, false);
-    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($curl, CURLOPT_URL, $base);
-    curl_setopt($curl, CURLOPT_REFERER, $base);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-    $str = curl_exec($curl);
-    curl_close($curl);
+    # Create a DOM parser object
+    $dom = new DOMDocument();
 
-    // Create a DOM object
-    $html_base = new simple_html_dom();
-    // Load HTML from a string
-    $html_base->load($str);
+    # Parse the HTML from Google.
+    # The @ before the method call suppresses any warnings that
+    # loadHTML might throw because of invalid HTML in the page.
+    @$dom->loadHTML($html);
 
     function showSearch($name)
     {
-        // Find all links 
-        // foreach($html_base->find('a') as $element) 
-        // {
-        //     if(strpos($element->innertext, strval($name) ) )
-        //     { 
-        //         //<<< EOT
-        //         //<ul>
-        //         //<li><button onclick="window.location.href='$element->href'">$element->innertext</button><li>
-        //         //<ul>;
-        //     }
-        // }
-        $html_base->clear(); 
-        unset($html_base);
+        # Iterate over all the <a> tags
+        foreach($dom->getElementsByTagName('a') as $link) 
+        {
+            $content = strval($link->nodeValue);
+            if (strpos($content, $name) )
+            {
+                $str = strval($link->getAttribute('href') );
+                # Show the <a href>
+                echo <<< EOT
+                <ul>
+                <li><button onclick="window.location.href='$str'">$content</button><li>
+                <ul>
+EOT;
+            }
+        }
     }
 ?>
 
