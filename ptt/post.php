@@ -46,13 +46,9 @@
         else
             $id = "$count<sup>th</sup> floor &nbsp;";
 
-        // in order to deal with rule
-        $query = "SELECT * FROM rule WHERE user_id = '$user_id' AND board_id = '$board_id'";
-        $result = $con->query($query);
-
         if ($count and ($author_id == $post_user_id))
             $prefix = "[Host] ";
-        if ($reply_id and (($permission >= MODERATOR) or ($user_id == $author_id)) or ($result === True) )
+        if ($reply_id and (($permission >= MODERATOR) or ($user_id == $author_id)) )
             $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($reply_id)\">Delete</button>";
         echo <<< EOT
         <p class="lead">
