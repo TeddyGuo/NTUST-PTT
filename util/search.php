@@ -10,27 +10,50 @@
             { 
                 $name = $_POST['name']; 
                 //-query  the database table 
-                $query = "SELECT user_id, board_id, board_name FROM board WHERE board_name LIKE '%" . $name .  "%'"; 
+                $query = "SELECT * FROM board WHERE board_name LIKE '%$name%'"; 
                 //-run  the query against the mysql query function 
                 $result = $con->query($query);
-                //-create  while loop and loop through result set 
-                while($row = $result->fetch_array() )
+                if ($result === True)
                 { 
-                    $user_id = $row['user_id']; 
-                    $board_id = $row['board_id']; 
-                    $board_name = $row['board_name']; 
-                    //-display the result of the array 
-                    echo <<< EOT
-                    <ul>
-                        <li><a href="search.php?board_id=$board_id">$board_name</a></li>
-                    </ul>
+                    //-create  while loop and loop through result set 
+                    while($row = $result->fetch_array() )
+                    {
+                        $board_id = $row['board_id'];
+                        $board_name = $row['board_name']; 
+                        //-display the result of the array 
+                        echo <<< EOT
+                        <script>
+                            window.onload = function()
+                            {
+                                window.open("/ptt/board.php?board_id=$board_id", "_blank"); // will open new tab on window.onload
+                            }
+                        </script>
 EOT;
+                    }
+                }
+                $query = "SELECT * FROM post WHERE post_name LIKE '%$name%'"; 
+                $result = $con->query($query);
+                if ($result === True)
+                {
+                    while($row = $result->fetch_array() )
+                    {
+                        $post_id = $row['post_id'];
+                        $post_name = $row['post_name']; 
+                        //-display the result of the array 
+                        echo <<< EOT
+                        <script>
+                            window.onload = function()
+                            {
+                                window.open("/ptt/post.php?post_id=$post_id", "_blank"); // will open new tab on window.onload
+                            }
+                        </script>
+EOT;
+                    }
                 }
             } 
-            else
-            { 
-                echo  "<p>Please enter a search query</p>"; 
-            } 
+            
+            $last_page = $_SERVER['HTTP_REFERER'];
+            header('Location: '. $last_page);
         } 
     } 
 ?> 
