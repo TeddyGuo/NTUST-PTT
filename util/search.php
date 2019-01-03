@@ -35,7 +35,7 @@
         # Iterate over all the <a> tags
         foreach($dom->getElementsByTagName('a') as $link) 
         {
-            $content = strval($link->nodeValue);
+            $content = strval($link->innerHTML);
             if (strpos($content, $name) )
             {
                 $str = strval($link->getAttribute('href') );
