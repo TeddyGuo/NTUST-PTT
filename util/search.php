@@ -14,7 +14,7 @@
 
     function showSearch($name)
     {
-        $pattern = strval(' /^[  a-zA-Z]+/ ');
+        $pattern = strval(' /^[  a-zA-Z]+//\p{Han}+/u ');
         if(preg_match($pattern, $_POST['name']) )
         { 
             //-query  the database table 
