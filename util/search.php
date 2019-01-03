@@ -30,7 +30,7 @@
                 //-display the result of the array 
                 echo <<< EOT
                 <ul>
-                <li><a href="/ptt/board.php?board_id=$board_id">$board_name</a><li> // will open new tab on window.onload
+                <li><button onclick="window.location.href='/ptt/board.php?board_id=$board_id'">$board_name</button><li> // will open new tab on window.onload
                 <ul>
 EOT;
             }
@@ -43,7 +43,7 @@ EOT;
                 //-display the result of the array 
                 echo <<< EOT
                 <ul>
-                <li><a href="/ptt/post.php?post_id=$post_id">$post_name</a><li> // will open new tab on window.onload
+                <li><button onclick="window.location.href='/ptt/post.php?post_id=$post_id'">$post_name</button><li>
                 <ul>
 EOT;
             }
