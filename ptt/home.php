@@ -135,9 +135,7 @@ EOT;
 			<?php showTop($_SESSION['default_permission']); ?>
 		</div>
         <div class="imgbox">
-			<div>
-                <a href="https://www.pornhub.com" target="_blank"><img class="center-fit" src="/images/Home.jpeg" alt="Home" /></a>
-            </div>
+            <a href="https://www.pornhub.com" target="_blank"><img class="center-fit" src="/images/Home.jpeg" alt="Home" /></a>
         </div>
 	</body>
 </html>

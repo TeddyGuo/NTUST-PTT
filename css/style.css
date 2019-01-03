@@ -30,9 +30,9 @@ hr
 
 /* for home img */
 .imgbox {
-    margin: 0;
-    padding: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 .center-fit {
     max-width: 100%;
