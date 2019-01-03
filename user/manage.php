@@ -70,7 +70,7 @@ EOT;
                 $user_id = $row['user_id'];
                 $username = getUserName($user_id);
                 $username = htmlspecialchars($username);
-                if ($row['default_permission'] != ADMIN)
+                if ($row['default_permission'] != ADMIN && $row['username'] != $_SESSION['default_permission'])
                     $user_option .= "<option value='$user_id'>$username</option>";
             }
 
