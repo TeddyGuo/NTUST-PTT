@@ -33,8 +33,10 @@ EOT;
             {
                 $user_id = $row['user_id'];
                 $username = getUserName($user_id);
+                $username = htmlspecialchars($username);
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
+                $board_name = htmlspecialchars($board_name);
                 $permission = $permission_text[$row['permission']];
                 echo <<< EOT
                 <tr>
@@ -67,6 +69,7 @@ EOT;
             {
                 $user_id = $row['user_id'];
                 $username = getUserName($user_id);
+                $username = htmlspecialchars($username);
                 if ($row['default_permission'] != ADMIN)
                     $user_option .= "<option value='$user_id'>$username</option>";
             }
@@ -78,6 +81,7 @@ EOT;
             {
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
+                $board_name = htmlspecialchars($board_name);
                 $board_option .= "<option value='$board_id'>$board_name</option>";
             }
 
@@ -128,6 +132,7 @@ EOT;
             {
                 $user_id = $row["user_id"];
                 $username = getUserName($user_id);
+                $username = htmlspecialchars($username);
                 $registration_time = $row["registration_time"];
                 $permission = $row["permission"];
 
