@@ -7,7 +7,7 @@
     { 
         if(!isset($_GET['go']) )
         {
-            $last_page = '../ptt/home.php';
+            $last_page = '/ptt/home.php';
             header("Location: " . $last_page);
         }
     } 
