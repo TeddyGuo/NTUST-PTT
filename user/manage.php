@@ -38,7 +38,7 @@ EOT;
                 $permission_string = $permission_text[$row['permission']];
                 $permission_num = $row['permission'];
 
-                if ($row['permission'] )
+                if ($row['permission'] < $_SESSION['default_permission'])
                     echo <<< EOT
                     <tr>
                         <td>$user_id</td>
