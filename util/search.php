@@ -11,12 +11,28 @@
             header("Location: " . $last_page);
         }
     } 
-    $html = file_get_html('../ptt/home.php');
+    //base url
+    $base = '../ptt/home.php';
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_URL, $base);
+    curl_setopt($curl, CURLOPT_REFERER, $base);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    $str = curl_exec($curl);
+    curl_close($curl);
+
+    // Create a DOM object
+    $html_base = new simple_html_dom();
+    // Load HTML from a string
+    $html_base->load($str);
 
     function showSearch($name)
     {
         // Find all links 
-        foreach($html->find('a') as $element) 
+        foreach($html_base->find('a') as $element) 
         {
             if(strpos($element->innertext, strval($name) ) )
             { 
@@ -27,6 +43,8 @@
 EOT;
             }
         }
+        $html_base->clear(); 
+        unset($html_base);
     }
 ?>
 
