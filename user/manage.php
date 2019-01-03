@@ -136,34 +136,35 @@ EOT;
                 $registration_time = $row["registration_time"];
                 $permission = $row["permission"];
 
-                if ($permission == ADMIN) continue;
-
-                $i++;
-                $option = '';
-                for ($j = 1; $j < count($permission_text); $j++)
+                if ($permission != ADMIN)
                 {
-                    if ($j == $permission)
-                        $option .= "<option value=$j selected='selected'>$permission_text[$j]</option>";
-                    else
-                        $option .= "<option value=$j>$permission_text[$j]</option>";
-                }
+                    $i++;
+                    $option = '';
+                    for ($j = 1; $j < count($permission_text); $j++)
+                    {
+                        if ($j == $permission)
+                            $option .= "<option value=$j selected='selected'>$permission_text[$j]</option>";
+                        else
+                            $option .= "<option value=$j>$permission_text[$j]</option>";
+                    }
 
-                echo <<< EOT
-                <tr>
-                    <form method="post" action="./change_permission.php">
-                        <input type="hidden" name="user_id" value=$user_id />
-                        <td>$user_id</td>
-                        <td>$username</td>
-                        <td>$registration_time</td>
-                        <td>
-                            <select class="form-control" id="permission_$i" name="permission" autoComplete="off" onChange="document.getElementById('submit_$i').disabled=false">
-                                $option
-                            <select>
-                        </td>
-                        <td><button class="btn" id="submit_$i" name="submit" disabled=true>Commit</button></td>
-                    </form>
-                </tr>
+                    echo <<< EOT
+                    <tr>
+                        <form method="post" action="./change_permission.php">
+                            <input type="hidden" name="user_id" value=$user_id />
+                            <td>$user_id</td>
+                            <td>$username</td>
+                            <td>$registration_time</td>
+                            <td>
+                                <select class="form-control" id="permission_$i" name="permission" autoComplete="off" onChange="document.getElementById('submit_$i').disabled=false">
+                                    $option
+                                <select>
+                            </td>
+                            <td><button class="btn" id="submit_$i" name="submit" disabled=true>Commit</button></td>
+                        </form>
+                    </tr>
 EOT;
+                }
             }
             echo("</table>");
         }
