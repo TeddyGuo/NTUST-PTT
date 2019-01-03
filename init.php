@@ -5,8 +5,8 @@
         exit("Illegal call to this page.");
 
     $con->query("DROP VIEW top_cache") or die($query . '<br/>' . $con->error);
-    $con->query("DROP TABLE post") or die($query . '<br/>' . $con->error);
     $con->query("DROP TABLE post_reply") or die($query . '<br/>' . $con->error);
+    $con->query("DROP TABLE post") or die($query . '<br/>' . $con->error);
     $con->query("DROP TABLE rule") or die($query . '<br/>' . $con->error);
     $con->query("DROP TABLE board") or die($query . '<br/>' . $con->error);
     $con->query("DROP TABLE user") or die($query . '<br/>' . $con->error);

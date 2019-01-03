@@ -32,16 +32,16 @@
     function showSearch($name)
     {
         // Find all links 
-        foreach($html_base->find('a') as $element) 
-        {
-            if(strpos($element->innertext, strval($name) ) )
-            { 
-                //<<< EOT
-                //<ul>
-                //<li><button onclick="window.location.href='$element->href'">$element->innertext</button><li>
-                //<ul>;
-            }
-        }
+        // foreach($html_base->find('a') as $element) 
+        // {
+        //     if(strpos($element->innertext, strval($name) ) )
+        //     { 
+        //         //<<< EOT
+        //         //<ul>
+        //         //<li><button onclick="window.location.href='$element->href'">$element->innertext</button><li>
+        //         //<ul>;
+        //     }
+        // }
         $html_base->clear(); 
         unset($html_base);
     }
