@@ -16,20 +16,18 @@
             $board_id = $row['board_id'];
             $board_name = $row['board_name'];
             $board_name = $con->real_escape_string($board_name);
-            if (!checkhtml($board_name))
-            {
-                $board_link = "<a href='board.php?board_id=$board_id'>$board_name</a>";
-                if ($permission >= MODERATOR)
-                    $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($board_id, '$board_name')\">Delete</button>";
-                echo <<< EOT
-                <p>
-                <h4>
-                    $i. $board_link
-                    $control
-                </h4>
-                </p>	
+            $board_name = checkhtml($board_name);
+            $board_link = "<a href='board.php?board_id=$board_id'>$board_name</a>";
+            if ($permission >= MODERATOR)
+                $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($board_id, '$board_name')\">Delete</button>";
+            echo <<< EOT
+            <p>
+            <h4>
+                $i. $board_link
+                $control
+            </h4>
+            </p>	
 EOT;
-            }
         }
         
         if ($permission >= MODERATOR)
@@ -77,15 +75,13 @@ EOT;
             $result2 = $con->query($query) or die($query . '<br/>' . $con->error);
             $post_name = $result2->fetch_array(MYSQLI_BOTH)['post_name'];
             $post_name = $con->real_escape_string($post_name);
-            if (!checkhtml($post_name))
-            {
-                $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
-                echo <<< EOT
-                <p><h5>
-                    $post_link
-                </h5><p>
+            $post_name = checkhtml($post_name);
+            $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
+            echo <<< EOT
+            <p><h5>
+                $post_link
+            </h5><p>
 EOT;
-            }
         }
     }
 
