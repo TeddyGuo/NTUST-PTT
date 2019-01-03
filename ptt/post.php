@@ -17,6 +17,7 @@
     {
         $board_id = $result['board_id'];
         $post_name = $result['post_name'];
+        $post_name = htmlspecialchars($post_name);
         $content = $result['content'];
         $img = $result['img'];
         $create_time = $result['create_time'];
@@ -33,6 +34,7 @@
         static $count = 0;
         
         $author_name = getUsername($author_id);
+        $author_name = htmlspecialchars($author_name);
         if ($count == 0)
             $id = "Host &nbsp;";
         else if ($count == 1)
@@ -71,8 +73,9 @@ EOT;
         $result = $con->query($query) or die($query . '<br/>' . $con->error);
         while ($row = $result->fetch_array(MYSQLI_BOTH))
         {
+            $content = htmlspecialchars($row['content']);
             echo("<h2></h2>\n");
-            printReply($row['user_id'], $row['create_time'], $row['content'], $row['img'], $user_id, $permission, $row['reply_id']);
+            printReply($row['user_id'], $row['create_time'], $content, $row['img'], $user_id, $permission, $row['reply_id']);
         }
     }
 
