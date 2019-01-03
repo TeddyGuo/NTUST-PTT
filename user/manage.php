@@ -1,7 +1,5 @@
 <?php
-    include('../util/constant.php');
-    include('../util/connect.php');
-    include('../util/general.php');
+    include("../header.php");
 
     if ($_SESSION['default_permission'] < MODERATOR)
         exit('Not enough permission.');
@@ -16,16 +14,19 @@
             $query = "SELECT * FROM rule ORDER BY user_id, board_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
             echo <<< EOT
-            <h1>Rule Manage</h1>
-            <table>
-                <tr>
-                    <td>User ID</td>
-                    <td>User name</td>
-                    <td>Board ID</td>
-                    <td>Board name</td>
-                    <td>Permission</td>
-                    <td></td>
-                </tr>
+            <div class="col-lg-12">
+                <h1>Rule Manage</h1>
+            </div>
+            <div class="col-lg-12">
+            <table class="table">
+                    <tr>
+                        <th class="col-xs-2">User ID</th>
+                        <th class="col-xs-2">User name</th>
+                        <th class="col-xs-2">Board ID</th>
+                        <th class="col-xs-2">Board name</th>
+                        <th class="col-xs-2">Permission</th>
+                        <th class="col-xs-2">Option</th>
+                    </tr>
 EOT;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
@@ -41,16 +42,16 @@ EOT;
                 if ($row['permission'] < $_SESSION['default_permission'])
                     echo <<< EOT
                     <tr>
-                        <td>$user_id</td>
-                        <td>$username</td>
-                        <td>$board_id</td>
-                        <td>$board_name</td>
-                        <td>$permission_string</td>
-                        <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission_num'">Delete</button></td>
+                        <td class="col-xs-2">$user_id</td>
+                        <td class="col-xs-2">$username</td>
+                        <td class="col-xs-2">$board_id</td>
+                        <td class="col-xs-2">$board_name</td>
+                        <td class="col-xs-2">$permission_string</td>
+                        <td class="col-xs-2"><button class="btn btn-outline-light btn-sm" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission_num'">Delete</button></td>
                     </tr>
 EOT;
             }
-            echo("</table>");
+            echo("</table></div>");
         }
     }
 
@@ -87,21 +88,38 @@ EOT;
             }
 
             echo <<< EOT
-            <h2>New Rule</h2>
+            <div class="col-lg-12">
+                <h2>New Rule</h2>
+            </div>
             <form method="post" action="add_rule.php" onSubmit="return inputCheck()">
-                <label for="username">Username: </label>
-                <select class="form-control" id="username" name="user_id">
-                    $user_option
-                </select>&nbsp; &nbsp;
-                <label for="board_name">Board Name: </label>
-                <select class="form-control" id="board_name" name="board_id">
-                    $board_option
-                </select>&nbsp; &nbsp;
-                <label for="permission">Permission: </label>
-                <select class="form-control" id="permission" name="permission">
-                    $permission_option
-                </select>&nbsp; &nbsp;
-                <input class="btn" type="submit" name="submit" value="Add" />
+                <div class="col-lg-12">
+                    <table class="table">
+                        <tr>
+                            <th class="col-xs-3">Username</th>
+                            <th class="col-xs-3">Board Name</th>
+                            <th class="col-xs-3">Permission</th>
+                            <th class="col-xs-3">Option</td>
+                        </tr>
+                        <tr>
+                            <td class="col-xs-3">
+                                <select class="form-control" id="username" name="user_id">
+                                    $user_option
+                                </select>
+                            </td>
+                            <td class="col-xs-3">
+                                <select class="form-control" id="board_name" name="board_id">
+                                    $board_option
+                                </select>
+                            </th>
+                            <td class="col-xs-3">
+                                <select class="form-control" id="permission" name="permission">
+                                    $permission_option
+                                </select>
+                            </td>
+                            <td class="col-xs-3"><input class="btn btn-outline-light btn-sm" type="submit" name="submit" value="Add" /></td>
+                        </tr>
+                    </table>
+                </div>
             </form>
 EOT;
         }
@@ -115,16 +133,18 @@ EOT;
         if ($permission >= MODERATOR)
         {
             echo <<< EOT
-            <h1>User manage</h1>
-            <table>
-                <tr>
-                    <td>User ID</td>
-                    <td>User name</td>
-                    <td>Registration time</td>
-                    <td>Default permission</td>
-
-                    <td><button class="btn" onClick="window.location.href=window.location.href">Restore</button></td>
-                </tr>
+            <div class="col-lg-12">
+                <h1>User manage</h1>
+            </div>
+            <div class="col-lg-12">
+                <table class="table">
+                    <tr>
+                        <th class="col-xs-2">User ID</th>
+                        <th class="col-xs-2">User name</th>
+                        <th class="col-xs-3">Registration time</th>
+                        <th class="col-xs-2">Default permission</th>
+                        <th class="col-xs-2"><button class="btn btn-outline-light btn-sm" onClick="window.location.href=window.location.href">Restore</button></th>
+                    </tr>
 EOT;
             $original_permission = $permission;
             $query = "SELECT * FROM user ORDER BY user_id";
@@ -152,28 +172,28 @@ EOT;
 
                     echo <<< EOT
                     <tr>
-                        <form method="post" action="./change_permission.php">
-                            <input type="hidden" name="user_id" value=$user_id />
-                            <td>$user_id</td>
-                            <td>$username</td>
-                            <td>$registration_time</td>
-                            <td>
-                                <select class="form-control" id="permission_$i" name="permission" autoComplete="off" onChange="document.getElementById('submit_$i').disabled=false">
-                                    $option
-                                <select>
-                            </td>
-                            <td><button class="btn" id="submit_$i" name="submit" disabled=true>Commit</button></td>
-                        </form>
-                    </tr>
+                    <form method="post" action="./change_permission.php">
+                        <input type="hidden" name="user_id" value=$user_id />
+                        <td>$user_id</td>
+                        <td>$username</td>
+                        <td>$registration_time</td>
+                        <td>
+                            <select class="form-control" id="permission_$i" name="permission" autoComplete="off" onChange="document.getElementById('submit_$i').disabled=false">
+                                $option
+                            <select>
+                        </td>
+                        <td><button class="btn btn-outline-light btn-sm" id="submit_$i" name="submit" disabled=true>Commit</button></td>
+                    </form>
+                </tr>
 EOT;
                 }
             }
-            echo("</table>");
+            echo("</table></div>");
         }
     }
 ?>
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en-US">
 <head>
     <title>NTUST-ptt - user manage</title>
@@ -189,7 +209,7 @@ EOT;
                     NTUST-ptt
                 </div>
                 <div class="masthead-nav col-8">
-                    <a href="/ptt/home.php">Home</a><!--WTF this part-->
+                    <a href="/ptt/home.php">Home</a> WTF this part
                     <?php showUserManagement($_SESSION['default_permission']); ?>
                     <a href="/user/user_info.php"><?php showUser(); ?></a>
                     <?php showDefaultPermission();?>
@@ -197,15 +217,17 @@ EOT;
                 </div>
             </div>
         </div>
-    </header>
+    </header>-->
 
     <div class="container markdown-body">
-        <?php showRules($_SESSION['default_permission']); ?>
-        <?php showRuleInput($_SESSION['default_permission']); ?>
-        <?php showUsers($_SESSION['default_permission']); ?>			
-        <footer class="footer">
+        <div class="row">
+            <?php showRules($_SESSION['default_permission']); ?>
+            <?php showRuleInput($_SESSION['default_permission']); ?>
+            <?php showUsers($_SESSION['default_permission']); ?>		
+        </div>	
+        <!-- <footer class="footer">
             We are the best!
-        </footer>
+        </footer> -->
     </div>
 </body>
 </html>

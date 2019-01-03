@@ -1,0 +1,24 @@
+<body>
+		<header class="masthead">
+			<div class="container">
+                <div class="row">
+    				<div class="masthead-logo col-lg-5">
+                        <h4>NTUST-ptt</h4>
+                    </div>
+                    <div class="col-lg-7"style="text-align:right;">
+                        <label>Style</label>
+                        <select name="Type">
+                            <option value="/css/style.css">Black</option>
+                            <option value="/css/style1.css">Blue</option>
+                            <option value="/css/style2.css">Purple</option>
+                        </select>
+                    </div>
+    				<nav class="col-lg-12 masthead-nav">
+    					<a href="/ptt/home.php">Home</a>
+    					<!-- <?php showUserManagement($_SESSION['default_permission']); ?> -->
+    					<a href="./user/user_info.php"><?php showUser(); ?></a>
+    					<a href="./logout.php">Log out</a>
+    				</nav>
+                </div>
+			</div>
+		</header>

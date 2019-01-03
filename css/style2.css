@@ -1,0 +1,33 @@
+body
+{
+    color: rgb(255, 243, 77);
+    background-color: rgb(81, 0, 156);
+}
+
+a:link
+{
+    color: rgb(13, 187, 255);
+}
+
+a:visited
+{
+    color: rgb(127, 255, 110);
+}
+
+table
+{
+    display: flex;
+    width: 100%;
+}
+
+hr
+{
+    border: 0;
+    height: 1px;
+    background: white;
+    background-image: linear-gradient(to right, #333, rgb(255, 255, 255), #333);
+}
+
+.header_title{
+    color: white;
+}

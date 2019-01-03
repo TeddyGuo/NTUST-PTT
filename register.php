@@ -13,10 +13,9 @@
 <html>
     <head>
         <meta charset=utf-8 />
-        <title>NTUST-ptt - register</title>
-        <link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
+        <title>NTUST-ptt</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 		<link href="/css/style.css" rel="stylesheet" />
-        <script src="/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     </head>
     <body onLoad="permissionText(document.getElementById('permission'))">
 		<header class="masthead">
@@ -25,7 +24,7 @@
 					NTUST-ptt
 				</div>
 				<nav class="masthead-nav">
-					<a href="/index.php">Back</a>
+                    <a class="btn btn-outline-light btn-sm" href="/index.php">Back</a>
 				</nav>
 			</div>
 		</header>
@@ -33,30 +32,34 @@
 		<div class="container markdown-body">
 			<h1 class="page-title">Register a new account</h1>
 			<form method="post" action="_register.php" onSubmit="return inputCheck()">
-				<p>
+            <div>
 					<label for="username">Username :</label>
-					<input class="form-control" id="username" name="username" type="text" />
-				</p>
-				<p>
+					<input class="form-control col-lg-5" id="username" name="username" type="text" />
+				</div>
+				<div>
 					<label for="password">Password :</label>
-					<input class="form-control" id="password" name="password" type="password" />
-				</p>
-				<p>
+					<input class="form-control col-lg-5" id="password" name="password" type="password" />
+				</div>
+				<div>
 					<label for="confirm">Confirm password :</label>
-					<input class="form-control" class="form-control" id="confirm" type="password" />
-				</p>
-				<p>
-					<label for="permission">Default permission :</label>
-					<select class="form-control" id="permission" name="permission" autoComplete="off" onChange="permissionText(this)">
+					<input class="form-control col-lg-5" class="form-control" id="confirm" type="password" />
+				</div>
+				<div>
+					<label for="permission">Default permission :&emsp;</label>
+                    <span id="describe"></span>
+					<select class="form-control col-lg-2" id="permission" name="permission" autoComplete="off" onChange="permissionText(this)">
 						<?php echo($option); ?>
 					</select>
-				</p>
-				<p><div id="describe"></div></p>
-				<input class="btn" type="submit" name="submit" value="Register" />
+                </div>
+                
+				<!-- <input class="btn" type="submit" name="submit" value="Register" /> -->
+                <div><br>
+                    <button type="submit" name="submit" class="btn btn-outline-light btn-sm">Register</button>
+                </div><br>
 			</form>
 			<footer class="footer">
-				We are family!
-			</footer>
+                <h5>We are family!</h5>
+            </footer>
 		</div>
 	</body>
 </html>

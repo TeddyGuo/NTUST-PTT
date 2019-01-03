@@ -1,17 +1,17 @@
 body
 {
     color: white;
-    background-color: black;
+    background-color: rgb(9, 9, 88);
 }
 
 a:link
 {
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 a:visited
 {
-    color: #18D45C;
+    color: rgb(0, 255, 149);
 }
 
 table

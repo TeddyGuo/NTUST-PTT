@@ -1,12 +1,12 @@
 body
 {
-    color: white;
-    background-color: black;
+    color: rgb(255, 255, 255);
+    background-color: rgb(65, 2, 2);
 }
 
 a:link
 {
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 a:visited
@@ -26,4 +26,8 @@ hr
     height: 1px;
     background: white;
     background-image: linear-gradient(to right, #333, #ccc, #333);
+}
+
+.header_title{
+    color: white;
 }

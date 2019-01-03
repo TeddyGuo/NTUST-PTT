@@ -1,8 +1,6 @@
 <!--WTF-->
 <?php
-    include("../util/constant.php");
-    include("../util/connect.php");
-    include("../util/general.php");
+    include("../header.php");
 
     if (!isset($_GET['board_id']))
         exit('Illegal call to this page.');
@@ -35,7 +33,7 @@
             $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
 
             if (($permission >= MODERATOR) or ($user_id == $author_id))
-                $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($post_id, '$post_name')\">Delete</button>";
+                $control = "<button style=\"float:right\" class=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($post_id, '$post_name')\">Delete</button>";
             echo <<< EOT
             <p>
             <h5>
@@ -49,37 +47,42 @@ EOT;
     function showPostInput($board_id, $permission)
     {	
         if ($permission >= USER)
-            echo <<< EOT
-            <h2>New post</h2>
-            <form method="post" action="add_post.php" onSubmit="return inputCheck()">
-                <input type="hidden" name="board_id" value=$board_id/>
-                <p>
-                    <label for="title">Title :</label>
-                    <input class="form-control input-block" type="text" id="title" name="title" />
-                </p>
-                <p>
-                    <label for="content">Content :</label>
-                    <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
-                </p>
-                <p>
-                    <label for="image">Image :</label>
-                    <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
-                </p>
-                <input class="btn btn-primary" type="submit" name="submit" value="Post!">
-            </form>
+        echo <<< EOT
+        <br><br>
+        <div class="col-lg-12">
+            <h4>New post</h4>
+        </div>
+        <form method="post" action="add_post.php" onSubmit="return inputCheck()">
+            <input type="hidden" name="board_id" value=$board_id/>
+            <div class="col-lg-12">
+                <label for="title">Title :</label>
+                <input class="form-control input-block" type="text" id="title" name="title" />
+            </div>
+            <div class="col-lg-12">
+                <label for="content">Content :</label>
+                <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
+            </div>
+            <div class="col-lg-12">
+                <label for="image">Image :</label>
+                <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
+            </div><br>
+            <div class="col-lg-12">
+                <input class="btn btn-outline-light btn-sm" type="submit" name="submit" value="Post!">
+            </div>
+        </form>
 EOT;
     }
 ?>
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 	<head>
 		<title>NTUST-ptt - board</title>
 		<link href="/bootstrap-4.1.3-dist/css/bootstrap.min.css" />
 		<link href="/css/style.css" rel="stylesheet" />
         <script src="/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-	</head>
-	<body>
+	</head>-->
+<!--<body>
 		<header class="masthead">
 			<div class="container">
 				<div class="masthead-logo">
@@ -88,19 +91,26 @@ EOT;
 				<nav class="masthead-nav">
 					<a href="/ptt/home.php">Home</a>
 					<?php showUserManagement($_SESSION['default_permission']); ?>
-					<a href="../user/user_info.php"><?php showUser(); ?></a>
+				    <a href="../user/user_info.php"><?php showUser(); ?></a>
 					<a href="../logout.php">Log out</a>
 				</nav>
 			</div>
-		</header>
+		</header> -->
 		
 		<div class="container markdown-body">
-			<h1 class="page-title"><?php echo($board_name); ?></h1>
-			<?php showPosts($board_id, $user_id, $permission); ?>
-			<?php showPostInput($board_id, $permission); ?>
-			<footer class="footer">
-			    <?php goBack();?>
-			</footer>
+            <div class="row">
+                <div class="col-lg-12">
+    			     <h1 class="page-title"><?php echo($board_name); ?></h1>
+                </div>
+                <div class="col-lg-12">
+    			 <?php showPosts($board_id, $user_id, $permission); ?>
+                </div>
+                <div class="col-lg-12">
+                     <?php goBack();?>
+                </div>
+                <br>
+                <?php showPostInput($board_id, $permission); ?>
+			</div>
 		</div>
 	</body>
 </html>

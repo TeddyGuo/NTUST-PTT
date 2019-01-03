@@ -1,7 +1,5 @@
 <?php
-    include('../util/constant.php');
-    include('../util/connect.php');
-    include('../util/general.php');
+    include("../header.php");
 
     if (!isset($_GET['post_id']))
         exit('Illegal call to this page.');
@@ -53,18 +51,18 @@
         if ($count and ($author_id == $post_user_id))
             $prefix = "[Host] ";
         if ($reply_id and (($permission >= MODERATOR) or ($user_id == $author_id)) )
-            $control = "<button style=\"float:right\" class=\"btn btn-sm btn-danger\" onClick=\"confirmDelete($reply_id)\">Delete</button>";
+            $control = "<button style=\"float:right\" lass=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($reply_id)\">Delete</button>";
         echo <<< EOT
-        <p class="lead">
+        <div class="lead col-lg-12">
             $id $prefix$author_name &nbsp;&nbsp;&nbsp;&nbsp; $create_time
             $control
-        </p>
-        <p>
+        </div>
+        <div class="col-lg-12">
             $content
-        </p>
-        <p>
+        </div>
+        <div class="col-lg-12">
             <img src="$img" alt="$img" height=300px width=300px />
-        </p>
+        </div>
 EOT;
         $count++;
     }
@@ -86,23 +84,28 @@ EOT;
     function showReplyInput($post_id, $permission)
     {
         if ($permission >= USER)
-            echo <<< EOT
+        echo <<< EOT
+        <br><br>
+        <div class="col-lg-12">
             <h2>Reply</h2>
-            <form method="post" action="add_reply.php" onSubmit="return inputCheck()">
-                <input type="hidden" name="post_id" value=$post_id />
-                <p>
-                    <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
-                </p>
-                <p>
-                    <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
-                </p>
-                <input class="btn btn-primary" type="submit" name="submit" value="Post!">
-            </form>
+        </div>
+        <form method="post" action="add_reply.php" onSubmit="return inputCheck()">
+            <input type="hidden" name="post_id" value=$post_id />
+            <div class="col-lg-12">
+                <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
+            </div><br>
+            <div class="col-lg-12">
+                <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
+            </div><br>
+            <div class="col-lg-12">
+                <input class="btn  btn-outline-light btn-sm" type="submit" name="submit" value="Post!">
+            </div>
+        </form>
 EOT;
     }
 ?>
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 	<head>
 		<title>NTUST-ptt - <?php echo($post_name); ?></title>
@@ -123,17 +126,25 @@ EOT;
 					<a href="../logout.php">Log out</a>
 				</nav>
 			</div>
-		</header>
+		</header>-->
 		
 		<div class="container markdown-body">
-			<h1 class="page-title"><?php echo($post_name); ?></h1>
+            <div class="row">
+			    <h1 class="page-title"><?php echo($post_name); ?></h1>
+            </div>
+            <div class="row">
 			<?php printReply($post_user_id, $create_time, $content, $img, $user_id, $permission); ?>
+            </div>
+            <div class="row">
 			<?php showReply($post_id, $user_id, $permission); ?>
-			<?php showReplyInput($post_id, $permission); ?>
-			<footer class="footer">
-                <!--Go back to last page-->
-                <?php goBack(); ?>
-			</footer>
+            </div>
+			
+			<div class="row">
+                <div class="col-lg-12">
+                    <?php showReplyInput($post_id, $permission); ?>
+                    <?php goBack();?>
+                </div>
+            </div>
 		</div>
 	</body>
 </html>
