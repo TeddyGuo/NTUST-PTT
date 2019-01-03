@@ -17,6 +17,7 @@
         password VARCHAR(32) NOT NULL,
         default_permission INT NOT NULL,
         registration_time DATETIME NOT NULL,
+        style_state VARCHAR(30) NOT NULL DEFAULT '/css/style.css',
 
         UNIQUE(username),
         PRIMARY KEY (user_id),
