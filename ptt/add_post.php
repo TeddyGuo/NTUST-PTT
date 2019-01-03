@@ -21,6 +21,7 @@
     $content = $_POST['content'];
     $content = addslashes($content);
     $content = $con->real_escape_string($content);
+    $content = checkhtml($content);
     $img = $_POST['img'];
     $img = addslashes($img);
     $now = date('Y-m-d H:i:s', time());

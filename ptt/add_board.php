@@ -12,6 +12,7 @@
     $board_name = $_POST['board_name'];
     $board_name = addslashes($board_name);
     $board_name = $con->real_escape_string($board_name);
+    $board_name = checkhtml($board_name);
     $query = "INSERT INTO board(board_name, user_id) VALUES ('$board_name', '$user_id')";
     $con->query($query) or die($query . '<br/>' . $con->error);
     $last_page = $_SERVER["HTTP_REFERER"];

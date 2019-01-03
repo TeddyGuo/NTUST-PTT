@@ -30,6 +30,7 @@
         {
             $post_id = $row['post_id'];
             $post_name = $row['post_name'];
+            $post_name = checkhtml($post_name);
             $author_id = $row['user_id'];
             $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
 
