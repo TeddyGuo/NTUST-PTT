@@ -36,11 +36,10 @@
         {
             if(strpos($element->innertext, strval($name) ) )
             { 
-                echo <<< EOT
-                <ul>
-                <li><button onclick="window.location.href='$element->href'">$element->innertext</button><li>
-                <ul>
-EOT;
+                //<<< EOT
+                //<ul>
+                //<li><button onclick="window.location.href='$element->href'">$element->innertext</button><li>
+                //<ul>;
             }
         }
         $html_base->clear(); 
