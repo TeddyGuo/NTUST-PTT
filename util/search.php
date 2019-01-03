@@ -7,7 +7,7 @@
     { 
         if(!isset($_GET['go']) )
         {
-            $last_page = $_SERVER['HTTP_REFERER'];
+            $last_page = '../ptt/home.php';
             header("Location: " . $last_page);
         }
     } 
@@ -21,36 +21,31 @@
             $query = "SELECT * FROM board WHERE board_name LIKE '%$name%'"; 
             //-run  the query against the mysql query function 
             $result = $con->query($query);
-            if ($result === True)
-            { 
-                //-create  while loop and loop through result set 
-                while($row = $result->fetch_array() )
-                {
-                    $board_id = $row['board_id'];
-                    $board_name = $row['board_name']; 
-                    //-display the result of the array 
-                    echo <<< EOT
-                    <ul>
-                    <li><a href="/ptt/board.php?board_id=$board_id">$board_name</a><li> // will open new tab on window.onload
-                    <ul>
+            
+            //-create  while loop and loop through result set 
+            while($row = $result->fetch_array() )
+            {
+                $board_id = $row['board_id'];
+                $board_name = $row['board_name']; 
+                //-display the result of the array 
+                echo <<< EOT
+                <ul>
+                <li><a href="/ptt/board.php?board_id=$board_id">$board_name</a><li> // will open new tab on window.onload
+                <ul>
 EOT;
-                }
             }
             $query = "SELECT * FROM post WHERE post_name LIKE '%$name%'"; 
             $result = $con->query($query);
-            if ($result === True)
+            while($row = $result->fetch_array() )
             {
-                while($row = $result->fetch_array() )
-                {
-                    $post_id = $row['post_id'];
-                    $post_name = $row['post_name']; 
-                    //-display the result of the array 
-                    echo <<< EOT
-                    <ul>
-                    <li><a href="/ptt/post.php?post_id=$post_id">$post_name</a><li> // will open new tab on window.onload
-                    <ul>
+                $post_id = $row['post_id'];
+                $post_name = $row['post_name']; 
+                //-display the result of the array 
+                echo <<< EOT
+                <ul>
+                <li><a href="/ptt/post.php?post_id=$post_id">$post_name</a><li> // will open new tab on window.onload
+                <ul>
 EOT;
-                }
             }
         }
     }
