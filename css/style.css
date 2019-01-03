@@ -30,6 +30,8 @@ hr
 
 /* for home img */
 .imgbox {
+    margin: 0;
+    padding: 0;
     display: grid;
 }
 .center-fit {
