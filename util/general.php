@@ -105,8 +105,7 @@ EOT;
                             'onrowenter','onrowexit','onrowsdelete','onrowsinserted','onscroll','onselect','onselectionchange','onselectstart','onstart','onstop',
                             'onsubmit','onunload','javascript','script','eval','behaviour','expression','style','class');
                     $skipstr = implode('|', $skipkeys);
-                    $pattern = '\"($skipstr)/i")';
-                    $value = preg_replace(array($pattern, '.', $value));
+                    $value = preg_replace( array("/($skipstr)/i"), '.', $value );
                     if(!preg_match('"/^[\/|\s]?($allowtags)(\s+|$)/is"', $value)) {
                         $value = '';
                     }
