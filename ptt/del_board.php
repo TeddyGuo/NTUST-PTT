@@ -42,6 +42,9 @@ EOT;
         $query = "DELETE FROM post WHERE board_id = '$board_id'";
         $con->query($query) or die($query . '<br/>' . $con->error);
 
+        $query = "DELETE FROM rule WHERE board_id = '$board_id'";
+        $con->query($query) or die($query . '<br/>' . $con->error);
+
         $query = "DELETE FROM board WHERE board_id = '$board_id'";
         $con->query($query) or die($query . '<br/>' . $con->error);
     }
