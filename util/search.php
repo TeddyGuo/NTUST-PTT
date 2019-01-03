@@ -53,7 +53,7 @@ EOT;
             } 
             
             $last_page = $_SERVER['HTTP_REFERER'];
-            header('Location: '. $last_page);
+            header('Refresh: 10; url = '. $last_page);
         } 
     } 
 ?> 
