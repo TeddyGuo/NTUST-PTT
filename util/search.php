@@ -7,11 +7,11 @@
     { 
         if(!isset($_GET['go']) )
         {
-            $last_page = '/ptt/home.php';
+            $last_page = '../ptt/home.php';
             header("Location: " . $last_page);
         }
     } 
-    $url = file_get_contents('/ptt/home.php');
+    $url = file_get_contents('../ptt/home.php');
     preg_match_all(' /<a[^>]+href=([\'"])(?<href>.+?)\1[^>]*>/i ', $url, $result);
 
     function showSearch($name)
@@ -33,7 +33,7 @@
                 //-display the result of the array 
                 echo <<< EOT
                 <ul>
-                <li><button onclick="window.location.href='/ptt/board.php?board_id=$board_id'">$board_name</button><li> // will open new tab on window.onload
+                <li><button onclick="window.location.href='../ptt/board.php?board_id=$board_id'">$board_name</button><li> // will open new tab on window.onload
                 <ul>
 EOT;
             }
@@ -46,7 +46,7 @@ EOT;
                 //-display the result of the array 
                 echo <<< EOT
                 <ul>
-                <li><button onclick="window.location.href='/ptt/post.php?post_id=$post_id'">$post_name</button><li>
+                <li><button onclick="window.location.href='../ptt/post.php?post_id=$post_id'">$post_name</button><li>
                 <ul>
 EOT;
             }
