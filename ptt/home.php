@@ -75,7 +75,7 @@ EOT;
             $result2 = $con->query($query) or die($query . '<br/>' . $con->error);
             $post_name = $result2->fetch_array(MYSQLI_BOTH)['post_name'];
             $post_name = $con->real_escape_string($post_name);
-            $post_name = checkhtml($post_name);
+            // $post_name = checkhtml($post_name);
             $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
             echo <<< EOT
             <p><h5>
