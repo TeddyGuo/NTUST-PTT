@@ -11,6 +11,8 @@
             header("Location: " . $last_page);
         }
     } 
+    $name = $_POST['name'];
+
     $url = "../ptt/home.php";
     $ch = curl_init();
     $timeout = 5;
@@ -73,7 +75,7 @@ EOT;
 		
 		<div class="container markdown-body">
 			<h1 class="page-title"><?php echo('Search Result'); ?></h1>
-			<?php showSearch($_POST['name']); ?>
+			<?php showSearch($name); ?>
 			<footer class="footer">
 			    <?php goBack();?>
 			</footer>
