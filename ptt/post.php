@@ -37,6 +37,8 @@
         
         $author_name = getUsername($author_id);
         $author_name = htmlspecialchars($author_name);
+        $content = htmlspecialchars($content);
+        $img = htmlspecialchars($img);
         if ($count == 0)
             $id = "Host &nbsp;";
         else if ($count == 1)
