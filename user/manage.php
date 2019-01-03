@@ -1,4 +1,6 @@
 <?php
+    // permission_text and permission_option may be the problems
+    
     include('../util/constant.php');
     include('../util/connect.php');
     include('../util/general.php');
