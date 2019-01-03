@@ -21,6 +21,7 @@
         $content = $result['content'];
         $content = htmlspecialchars($content);
         $img = $result['img'];
+        $img = htmlspecialchars($img);
         $create_time = $result['create_time'];
         $post_user_id = $result['user_id'];
     }
