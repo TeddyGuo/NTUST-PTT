@@ -27,3 +27,12 @@ hr
     background: white;
     background-image: linear-gradient(to right, #333, #ccc, #333);
 }
+
+/* for home img */
+.imgbox {
+    display: grid;
+}
+.center-fit {
+    max-width: 100%;
+    margin: auto;
+}
