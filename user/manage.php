@@ -130,14 +130,14 @@ EOT;
             $i = 0;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
-                $user_id = $row["user_id"];
-                $username = getUserName($user_id);
-                $username = htmlspecialchars($username);
-                $registration_time = $row["registration_time"];
-                $permission = $row["permission"];
-
-                if ($permission != ADMIN)
+                if ($row['permission'] != ADMIN)
                 {
+                    $user_id = $row["user_id"];
+                    $username = getUserName($user_id);
+                    $username = htmlspecialchars($username);
+                    $registration_time = $row["registration_time"];
+                    $permission = $row["permission"];
+
                     $i++;
                     $option = '';
                     for ($j = 1; $j < count($permission_text); $j++)
