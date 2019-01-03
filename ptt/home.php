@@ -134,8 +134,10 @@ EOT;
 			<h2>Top 10 Posts</h2>
 			<?php showTop($_SESSION['default_permission']); ?>
 		</div>
-        <footer class="footer imgbox">
-			<a href="https://www.pornhub.com" target="_blank"><img class="center-fit" src="/images/Home.jpeg" alt="Home" /></a>
-        </footer>
+        <div class="imgbox">
+			<div>
+                <a href="https://www.pornhub.com" target="_blank"><img class="center-fit" src="/images/Home.jpeg" alt="Home" /></a>
+            </div>
+        </div>
 	</body>
 </html>
