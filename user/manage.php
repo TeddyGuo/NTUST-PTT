@@ -60,7 +60,6 @@ EOT;
         if ($permission >= MODERATOR)
         {
             global $permission_option;
-            $flag = 1; // identify the identity
 
             $query = "SELECT * FROM user ORDER BY user_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
@@ -71,7 +70,8 @@ EOT;
                 $username = getUserName($user_id);
                 $username = htmlspecialchars($username);
                 if ($row['default_permission'] != ADMIN && $user_id != $_SESSION['user_id'])
-                    $user_option .= "<option value='$user_id'>$username</option>";
+                    if ($permission > $row['default_permission'])
+                        $user_option .= "<option value='$user_id'>$username</option>";
             }
 
             $query = "SELECT * FROM board ORDER BY board_id";
@@ -130,7 +130,7 @@ EOT;
             $i = 0;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
-                if ($row['default_permission'] != ADMIN && $_SESSION['user_id'] != $row['user_id'])
+                if ($row['default_permission'] != ADMIN && $_SESSION['user_id'] != $row['user_id'] && $permission > $row['default_permission'])
                 {
                     $user_id = $row["user_id"];
                     $username = getUserName($user_id);
