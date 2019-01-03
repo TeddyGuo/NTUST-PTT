@@ -10,9 +10,13 @@
     $user_id = addslashes($user_id);
     $board_id = $_GET['board_id'];
     $board_id = addslashes($board_id);
-        
-    $query = "DELETE FROM rule WHERE (user_id = '$user_id' AND board_id = '$board_id')";
-    $con->query($query) or die($query . '<br/>' . $con->error);
+    $permission = $_GET['permission'];
+    $permission = addslashes($permission);
+    if (!($permission >= $_SESSION['default_permission']) )
+    {
+        $query = "DELETE FROM rule WHERE (user_id = '$user_id' AND board_id = '$board_id')";
+        $con->query($query) or die($query . '<br/>' . $con->error);
+    }
     $last_page = $_SERVER["HTTP_REFERER"];
     header("Location: $last_page");
 ?>
