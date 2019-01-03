@@ -31,6 +31,7 @@ EOT;
         }
         
         if ($permission >= MODERATOR)
+        {
             echo <<< EOT
             <h2>Create a new board</h2>
             <form method="post" action="add_board.php" onSubmit="return inputCheck()">
@@ -58,6 +59,7 @@ EOT;
             }
             </script>
 EOT;
+        }
     }
 
     // Show Top 10
