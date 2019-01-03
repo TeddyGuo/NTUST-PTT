@@ -1,6 +1,4 @@
 <?php
-    // permission_text and permission_option may be the problems
-    
     include('../util/constant.php');
     include('../util/connect.php');
     include('../util/general.php');
@@ -37,16 +35,18 @@ EOT;
                 $board_id = $row['board_id'];
                 $board_name = getBoardName($board_id);
                 $board_name = htmlspecialchars($board_name);
-                $permission = $permission_text[$row['permission']];
-                echo <<< EOT
-                <tr>
-                    <td>$user_id</td>
-                    <td>$username</td>
-                    <td>$board_id</td>
-                    <td>$board_name</td>
-                    <td>$permission</td>
-                    <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission'">Delete</button></td>
-                </tr>
+                $permission_string = $permission_text[$row['default_permission']];
+
+                if ($row['default_permission'] )
+                    echo <<< EOT
+                    <tr>
+                        <td>$user_id</td>
+                        <td>$username</td>
+                        <td>$board_id</td>
+                        <td>$board_name</td>
+                        <td>$permission_string</td>
+                        <td><button class="btn" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission'">Delete</button></td>
+                    </tr>
 EOT;
             }
             echo("</table>");
@@ -125,12 +125,13 @@ EOT;
                     <td><button class="btn" onClick="window.location.href=window.location.href">Restore</button></td>
                 </tr>
 EOT;
+            $original_permission = $permission;
             $query = "SELECT * FROM user ORDER BY user_id";
             $result = $con->query($query) or die($query . '<br/>' . $con->error);
             $i = 0;
             while ($row = $result->fetch_array(MYSQLI_BOTH))
             {
-                if ($row['default_permission'] != ADMIN && $_SESSION['user_id'] != $row['user_id'] && $permission > $row['default_permission'])
+                if ($row['default_permission'] != ADMIN && $_SESSION['user_id'] != $row['user_id'] && $original_permission > $row['default_permission'])
                 {
                     $user_id = $row["user_id"];
                     $username = getUserName($user_id);
