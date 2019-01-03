@@ -5,7 +5,7 @@
     { 
         if(isset($_GET['go']))
         { 
-            $pattern = '/^[  a-zA-Z]+/';
+            $pattern = strval(' /^[  a-zA-Z]+/ ');
             if(preg_match($pattern, $_POST['name']) )
             { 
                 $name = $_POST['name']; 
@@ -53,7 +53,7 @@ EOT;
             } 
             
             $last_page = $_SERVER['HTTP_REFERER'];
-            header('Refresh: 10; url = '. $last_page);
+            header('Location: '. $last_page);
         } 
     } 
 ?> 
