@@ -165,6 +165,8 @@ EOT;
                     </tr>
 EOT;
                 }
+                else
+                    echo "<tr>Hidden Info</tr>";
             }
             echo("</table>");
         }
