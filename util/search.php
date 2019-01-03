@@ -11,6 +11,8 @@
             header("Location: " . $last_page);
         }
     } 
+    $url = file_get_contents('/ptt/home.php');
+    preg_match_all(' /<a[^>]+href=([\'"])(?<href>.+?)\1[^>]*>/i ', $url, $result);
 
     function showSearch($name)
     {
