@@ -232,8 +232,9 @@ EOT;
     </div>
 
     <script>
-        function link ($user_id, $board_id){  
-            window.location.assign('del_rule.php?user_id=' + $user_id.toString() + '&board_id=' + $board_id.toString());
+        function link ($user_id, $board_id){ 
+            if (confirm("Do you really want to delete the rule?") )
+                window.location.assign('del_rule.php?user_id=' + $user_id.toString() + '&board_id=' + $board_id.toString());
         } 
     </script>
 </body>

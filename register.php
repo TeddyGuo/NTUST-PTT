@@ -21,7 +21,7 @@
 		<header class="masthead">
 			<div class="container">
 				<div class="masthead-logo">
-					NTUST-ptt
+					<h4>NTUST-ptt</h4>
 				</div>
 				<nav class="masthead-nav">
                     <a class="btn btn-outline-light btn-sm" href="/index.php">Back</a>
