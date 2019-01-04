@@ -47,7 +47,7 @@ EOT;
                         <td class="col-xs-2">$board_id</td>
                         <td class="col-xs-2">$board_name</td>
                         <td class="col-xs-2">$permission_string</td>
-                        <td class="col-xs-2"><button class="btn btn-outline-light btn-sm" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id'; ">Delete</button></td>
+                        <td class="col-xs-2"><button class="btn btn-outline-light btn-sm" onclick="link($user_id, $board_id);">Delete</button></td>
                     </tr>
 EOT;
                 }
@@ -230,5 +230,11 @@ EOT;
             We are the best!
         </footer> -->
     </div>
+
+    <script>
+        function link ($user_id, $board_id){  
+            window.location.assign('del_rule.php?user_id=' + $user_id.toString() + '&board_id=' + $board_id.toString());
+        } 
+    </script>
 </body>
 </html>
