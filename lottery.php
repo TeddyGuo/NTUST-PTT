@@ -22,19 +22,24 @@
         <hr />
         <p>抽籤結果</p>
         <?php
-            echo <<< EOT
-            <ul>
-                $list[$num]
-            </ul>
-EOT;
-            if ($list[$num] == "Fuck out away!")
+            if (isset($_POST['submit']) )
             {
-                header("Refresh:5; url=https://tw.yahoo.com/");
+                echo <<< EOT
+                <ul>
+                    $list[$num]
+                </ul>
+EOT;
+                if ($list[$num] == "Fuck out away!")
+                {
+                    header("Refresh:5; url=https://tw.yahoo.com/");
+                }
+                else
+                {
+                    header("Refresh:5; url=index.php");
+                }
             }
             else
-            {
-                header("Refresh:5; url=index.php");
-            }
+                echo("<ul></ul>");
         ?>
     </body>
 </html>
