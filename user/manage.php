@@ -40,6 +40,7 @@ EOT;
                 $permission_num = $row['permission'];
 
                 if ($row['permission'] < $_SESSION['default_permission'])
+                {
                     echo <<< EOT
                     <tr>
                         <td class="col-xs-2">$user_id</td>
@@ -47,9 +48,10 @@ EOT;
                         <td class="col-xs-2">$board_id</td>
                         <td class="col-xs-2">$board_name</td>
                         <td class="col-xs-2">$permission_string</td>
-                        <td class="col-xs-2"><button class="btn btn-outline-light btn-sm" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission_num'">Delete</button></td>
+                        <td class="col-xs-2"><button class="btn btn-outline-light btn-sm" onclick="windows.location.href='del_rule.php?user_id=$user_id&board_id=$board_id&permission=$permission_num'; ">Delete</button></td>
                     </tr>
 EOT;
+                }
             }
             echo("</table></div>");
         }
