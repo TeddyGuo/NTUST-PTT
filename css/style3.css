@@ -31,3 +31,10 @@ hr
 .header_title{
     color: white;
 }
+
+img[src=""],img:not([src])
+{
+    width:0%;
+    height:0%;
+    opacity:0;
+}
