@@ -5,7 +5,29 @@
  
     // 抽籤
     srand((double)microtime() * 1000000);
-    $num = rand(1, 2)
+    $num = rand(1, 2);
+
+    function lottery()
+    {
+        if (isset($_POST['submit']) )
+        {
+            echo <<< EOT
+            <ul>
+                $list[$num]
+            </ul>
+EOT;
+            if ($list[$num] == "Fuck out away!")
+            {
+                header("Refresh:5; url=https://tw.yahoo.com/");
+            }
+            else
+            {
+                header("Refresh:5; url=index.php");
+            }
+        }
+        else
+            echo("<ul></ul>");
+    }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw">
@@ -22,24 +44,7 @@
         <hr />
         <p>抽籤結果</p>
         <?php
-            if (isset($_POST['submit']) )
-            {
-                echo <<< EOT
-                <ul>
-                    $list[$num]
-                </ul>
-EOT;
-                if ($list[$num] == "Fuck out away!")
-                {
-                    header("Refresh:5; url=https://tw.yahoo.com/");
-                }
-                else
-                {
-                    header("Refresh:5; url=index.php");
-                }
-            }
-            else
-                echo("<ul></ul>");
+            lottery();
         ?>
     </body>
 </html>
