@@ -5,9 +5,7 @@
  
     // 抽籤
     srand((double)microtime() * 1000000);
-    $lots = explode("\n", $list);
-    shuffle($lots);
-    $lots = array_slice($lots, 0, $qty);
+    $num = rand(1, 2)
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw">
@@ -25,11 +23,11 @@
         <p>抽籤結果</p>
         <ol>
         <?php    
-            echo $lots[0];
+            echo $list[$num];
         ?>
         </ol>
         <?php     
-            if ($lots[0] == "Fuck out away!") 
+            if ($list[$num] == "Fuck out away!") 
                 header("Refresh:5; url=https://tw.yahoo.com/");
             else
                 header("Refresh:5; url=index.php");
