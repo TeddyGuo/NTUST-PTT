@@ -21,16 +21,20 @@
         </form>
         <hr />
         <p>抽籤結果</p>
-        <ol>
-        <?php    
-            echo $list[$num];
-        ?>
-        </ol>
-        <?php     
-            if ($list[$num] == "Fuck out away!") 
+        <?php
+            echo <<< EOT
+            <ul>
+                $list[$num]
+            </ul>
+EOT;
+            if ($list[$num] == "Fuck out away!")
+            {
                 header("Refresh:5; url=https://tw.yahoo.com/");
+            }
             else
+            {
                 header("Refresh:5; url=index.php");
+            }
         ?>
     </body>
 </html>
