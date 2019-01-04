@@ -27,7 +27,7 @@
     {
         if ($permission >= MODERATOR)
         {
-            echo("<a href='/user/manage.php'>User Management<a>");
+            echo("<a class='btn btn-outline-light btn-sm' href='/user/manage.php'>User Management<a>");
         }
     }
     function getPermission($user_id, $board_id)
@@ -71,7 +71,7 @@
     function goBack()
     {
         echo <<< EOT
-        <button onclick="history.back();">Back</button>
+        <button class="btn btn-outline-light btn-sm" onclick="history.back();">Back</button>
 EOT;
     }
     function checkhtml($html) {

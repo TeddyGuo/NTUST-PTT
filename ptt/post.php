@@ -37,6 +37,8 @@
         $author_name = htmlspecialchars($author_name);
         $content = htmlspecialchars($content);
         $img = htmlspecialchars($img);
+        if($img == NULL)
+            $img = "";
         if ($count == 0)
             $id = "Host &nbsp;";
         else if ($count == 1)
@@ -50,8 +52,10 @@
 
         if ($count and ($author_id == $post_user_id))
             $prefix = "[Host] ";
+        else $prefix = "";
         if ($reply_id and (($permission >= MODERATOR) or ($user_id == $author_id)) )
-            $control = "<button style=\"float:right\" lass=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($reply_id)\">Delete</button>";
+            $control = "<button style=\"float:right\" class=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($reply_id)\">Delete</button>";
+        else $control = "";
         echo <<< EOT
         <div class="lead col-lg-12">
             $id $prefix$author_name &nbsp;&nbsp;&nbsp;&nbsp; $create_time
@@ -61,7 +65,8 @@
             $content
         </div>
         <div class="col-lg-12">
-            <img src="$img" alt="$img" height=300px width=300px />
+            <img src="$img" alt="$img" height=300px width=300px style="display:block; margin:auto;" />
+            <br>
         </div>
 EOT;
         $count++;
@@ -86,18 +91,18 @@ EOT;
         if ($permission >= USER)
         echo <<< EOT
         <br><br>
-        <div class="col-lg-12">
+        <div>
             <h2>Reply</h2>
         </div>
         <form method="post" action="add_reply.php" onSubmit="return inputCheck()">
             <input type="hidden" name="post_id" value=$post_id />
-            <div class="col-lg-12">
+            <div>
                 <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
             </div><br>
-            <div class="col-lg-12">
+            <div>
                 <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
             </div><br>
-            <div class="col-lg-12">
+            <div>
                 <input class="btn  btn-outline-light btn-sm" type="submit" name="submit" value="Post!">
             </div>
         </form>
@@ -130,19 +135,21 @@ EOT;
 		
 		<div class="container markdown-body">
             <div class="row">
-			    <h1 class="page-title"><?php echo($post_name); ?></h1>
-            </div>
-            <div class="row">
-			<?php printReply($post_user_id, $create_time, $content, $img, $user_id, $permission); ?>
-            </div>
-            <div class="row">
-			<?php showReply($post_id, $user_id, $permission); ?>
-            </div>
-			
-			<div class="row">
+                <div class="col-lg-12">
+    			    <h1 class="page-title"><?php echo($post_name); ?></h1>
+                </div>
+                <div class="col-lg-12">
+    			    <?php printReply($post_user_id, $create_time, $content, $img, $user_id, $permission); ?>
+                </div>
+                <div class="col-lg-12">
+    			    <?php showReply($post_id, $user_id, $permission); ?>
+                </div>
+                <div class="col-lg-12">
+                    <br>
+                    <?php goBack();?>
+                </div>
                 <div class="col-lg-12">
                     <?php showReplyInput($post_id, $permission); ?>
-                    <?php goBack();?>
                 </div>
             </div>
 		</div>

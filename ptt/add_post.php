@@ -27,8 +27,6 @@
     
     $img = $_POST['img'];
     $img = addslashes($img);
-    $img = htmlspecialchars($img);
-
     $now = date('Y-m-d H:i:s', time());
     $query = "INSERT INTO post(user_id, board_id, post_name, create_time, last_update, content, img) ";
     $query .= "VALUES ('$user_id', '$board_id', '$post_name', '$now', '$now', '$content', '$img')";

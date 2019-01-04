@@ -20,7 +20,6 @@
     $content = htmlspecialchars($content);
     $img = $_POST['img'];
     $img = addslashes($img);
-    $img = htmlspecialchars($img);
     $now = date('Y-m-d H:i:s', time());
     $query = "INSERT INTO post_reply(user_id, post_id, create_time, content, img) ";
     $query .= "VALUES ('$user_id', '$post_id', '$now', '$content', '$img')";

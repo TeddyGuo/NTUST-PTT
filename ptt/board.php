@@ -30,10 +30,11 @@
             $post_name = $row['post_name'];
             $post_name = htmlspecialchars($post_name);
             $author_id = $row['user_id'];
-            $post_link = "<a href='post.php?post_id=$post_id'>$post_name</a>";
+            $post_link = "<li><a href='post.php?post_id=$post_id'>$post_name</a>";
 
             if (($permission >= MODERATOR) or ($user_id == $author_id))
-                $control = "<button style=\"float:right\" class=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($post_id, '$post_name')\">Delete</button>";
+                $control = "<button style=\"float:right\" class=\"btn btn-outline-light btn-sm\" onClick=\"confirmDelete($post_id, '$post_name')\">Delete</button></li>";
+            else $control="</li>";
             echo <<< EOT
             <p>
             <h5>
@@ -48,25 +49,26 @@ EOT;
     {	
         if ($permission >= USER)
         echo <<< EOT
-        <br><br>
-        <div class="col-lg-12">
+        <br>
+        <div>
             <h4>New post</h4>
         </div>
+        
         <form method="post" action="add_post.php" onSubmit="return inputCheck()">
             <input type="hidden" name="board_id" value=$board_id/>
-            <div class="col-lg-12">
+            <div>
                 <label for="title">Title :</label>
                 <input class="form-control input-block" type="text" id="title" name="title" />
             </div>
-            <div class="col-lg-12">
+            <div>
                 <label for="content">Content :</label>
                 <textarea class="form-control input-block" id="content" name="content" rows=6></textarea>
             </div>
-            <div class="col-lg-12">
+            <div>
                 <label for="image">Image :</label>
                 <textarea class="form-control input-block" id="img" name="img" rows=1></textarea>
             </div><br>
-            <div class="col-lg-12">
+            <div>
                 <input class="btn btn-outline-light btn-sm" type="submit" name="submit" value="Post!">
             </div>
         </form>
@@ -103,13 +105,15 @@ EOT;
     			     <h1 class="page-title"><?php echo($board_name); ?></h1>
                 </div>
                 <div class="col-lg-12">
-    			 <?php showPosts($board_id, $user_id, $permission); ?>
+    			    <?php showPosts($board_id, $user_id, $permission); ?>
+                    <br>
                 </div>
                 <div class="col-lg-12">
                      <?php goBack();?>
                 </div>
-                <br>
-                <?php showPostInput($board_id, $permission); ?>
+                <div class="col-lg-12">
+                    <?php showPostInput($board_id, $permission); ?>
+                </div>
 			</div>
 		</div>
 	</body>
