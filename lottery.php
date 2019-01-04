@@ -18,7 +18,6 @@
     <body>
         <form action="<?php echo $request_uri ?>" method="post">
             <p>
-                <?php echo $list ?>
                 <input type="submit" value="抽籤" />
             </p>
         </form>
