@@ -38,7 +38,7 @@ EOT;
     <body>
         <form action="<?php echo $request_uri ?>" method="post">
             <p>
-                <input type="submit" value="抽籤" />
+                <input type="submit" name="submit" value="抽籤" />
             </p>
         </form>
         <hr />
